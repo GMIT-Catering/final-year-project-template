@@ -284,6 +284,7 @@ Here we will discuss why we chose PHP, SQL, JavaScript and JSON as our core tech
 
 \chapter{Technology Review} % 7-10 pages
 % intro to tech review, bla bla bla
+Here we will talk about all the technologies we used.
 
   \section{System Administration and Management Web Application}	% 4 pages
   After gathering all system requirements and we have done a research and based on them I decided to use PHP based framework because there is a lot of hosting companies that support this server scripting language and it has very cheap pricing.
@@ -340,7 +341,7 @@ After installing it we can start using it, simply by creating \textit{composer.j
 As you can see, require takes a key value pairs where key maps to package names and value is version of it. We also can configure the minimal supported release or nominal version. When \textit{composer.json} is completed, we can run command that will download chosen packages and configure them in our project. To do that run this command in console:
 \begin{minted}{bash}
  $ php composer.phar update
-\end{minted} 
+\end{minted}
 
     \subsection{WAMP Server}
 
@@ -352,122 +353,281 @@ One of most popular hosting companies in Ireland is Blacknight Solutions. For on
 To solve this problems I have found \textit{Server Grove} hosting company that fully supports \textbf{\textit{Zend Framework 2}}, \textbf{\textit{Git Client}} and  \textbf{\textit{composer}}. It took me a while to move my domain name from BlackNight Solutions, but once I have it done all technical support on Server Grove is brilliant.
 
 
-
-  \section{\href{https://github.com}{GitHub}}
+\pagebreak
+  \section{GitHub}
 \begin{wrapfigure}{r}{2.5cm}
-	\includegraphics[width=3cm]{img/zf2/github-logo.png}
+\includegraphics[width=3cm]{img/zf2/github-logo.png}
 \end{wrapfigure} 
+We used GitHub \cite{github} throughout our project in order to utilize source control and keeping track of versions.
+We found that it was very useful in that we could have separate repositories for the different parts of the project.
+When we did work on the same repository we each had our own branch to which we would merge intermittently into the \textit{master} branch.
+We also used the \textit{issue tracker} to raise any issues/bugs we noticed on each others projects, or to mention an enhancement that could be incorporated.
 
+\begin{figure}[H] 
+	\center{\includegraphics[width=0.75\linewidth]{img/issue_tracker}}
+	\caption{Issue Tracker}
+	\label{fig:speciation}
+\end{figure}
+
+
+We also created an organisation, which acts as an entity.
+We forked all our repositories there and used it as a central hub for the overall project \cite{github_org}.
+\begin{figure}[H] 
+	\center{\includegraphics[width=0.75\linewidth]{img/github_org}}
+	\caption{GMIT Catering GitHub Org}
+	\label{fig:speciation}
+\end{figure}
+
+\pagebreak
   \section{Mobile App} % 4 pages
-\subsection{\href{http://ionicframework.com/}{Ionic Framework}}
-% talk about JS, AngularJS, CSS, HTML and Ionic.
-\begin{wrapfigure}{r}{2.5cm}
-\includegraphics[width=3cm]{img/mobile-app/logos/ionic.png}
-\end{wrapfigure} 
+The technology stack I chose to use for this project is quite extensive.  
+Ionic is heavily based in the JavaScript community which is known for it's enormous amount of libraries and dependencies.
+It is quite a steep learning curve to get to grips with the basics, and it takes quite a while to get comfortable in the workflow.
+I came across a tweet that sums up this experience:
+\begin{figure}[H] 
+	\center{\includegraphics[width=0.8\linewidth]{img/mobile-app/js_dev_init}}
+	\caption{JS Developer Learning Curve}
+	\label{fig:speciation}
+\end{figure}
 
-\subsubsection{\href{}{HTML/CSS}}
+
+I  done extensive research on different cross platform frameworks.
+First I started with JQueryMobile and PhoneGap which had the capabilities but the community and tooling were quite scarce. 
+\\ 
+
+Xamarin was another option, It did not appeal to me as much, during my research I found many people had lots of issues with it and you still have to write some specific code for each platform.
+\\ 
+
+A lecturer of mine mentioned the Ionic framework to me and once I looked into it, it was the obvious choice.
+Ionic has a huge community, extensive tooling for the majority of tasks needed and it is rapidly becoming the number one option for cross platform development.
+\\
+
+Once I had decided to take the Ionic route it meant that I was delving into the world of web development, as Ionic uses AngularJS, which is used with JavaScript, HTML, CSS and all the web development tools and work-flows.
+
+\subsubsection{HTML/CSS}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/html-css.jpg}
 \end{wrapfigure} 
+I found that learning HTML \cite{html} and CSS \cite{css} was fine, I just needed to know enough to use Angular, which is very basic.
+I had done some HTML and CSS before so I just needed to brush up on my skills.
+I took the Web Development \cite{codeschool_webdev} course on Code School which helped me quickly get up to speed.
+\\
 
-\subsubsection{\href{}{JavaScript}}
+HTML is great because it is a simple structure that is easy to understand.
+It is just a subset of XML for websites.
+\\
+
+CSS makes is really easy to change various parts of the HTML form one place.
+I used SASS (Sassy CSS), this lets you use CSS in a programmatic way (using variables).
+\\
+
+Here is a piece of SASS for the Ionic colours:
+\begin{minted}{css}
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #5475aa !default; 
+$calm:                            #11c1f3 !default;
+$balanced:                        #7baa1e !default; 
+$energized:                       #ffc900 !default;
+$assertive:                       #840018 !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+
+// The path for our ionicons font files
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+// custom styles
+@import "scss/styles";
+\end{minted}
+You can also see that I am importing other style sheets.
+
+
+\subsubsection{JavaScript}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/JS.png}
 \end{wrapfigure} 
+Once I had gotten myself into the basic mindset of HTML and CSS I decided to learn JavaScript.
+I completed three JavaScript courses \cite{codeschool_js} on Code  School.
+This gave me a great understanding of JavaScript \cite{javascript}.
+\\
+I found that JavaScript's event based nature took awhile to get the hang of but once understood it was very useful. 
+Promises are a very important concept to understand as JS is asynchronous and tasks may not execute in order, especially blocking tasks.
+This is useful as you don't need to code in concurrency, it is an inherent feature of the language.
+\\
+I wrote a literature review on using JavaScript for full stack development \cite{js_advantages_full_stack}, this touches on promises, the event based nature, and why JavaScript is so popular.
 
-
-\subsubsection{\href{}{AngularJS}}
+\subsubsection{AngularJS}
 \begin{wrapfigure}{r}{2.5cm}
-\includegraphics[width=3cm]{img/mobile-app/logos/angular.jpg}
+	\includegraphics[width=3cm]{img/mobile-app/logos/angular.jpg}
+	\centering
+\end{wrapfigure}
+
+I completed two AngularJS \cite{angular} courses on Code School. 
+Then for each course I completed I done the 2/3 hour screen cast that accompanied it.
+\\
+The main problem I found with JavaScript is a lack of standards and structure. 
+This is why I believe there are so many JS frameworks out there.
+\begin{figure}[H] 
+	\center{\includegraphics[width=0.75\linewidth]{img/mobile-app/angular_object_diagram.png}}
+	\caption{Angular Object Diagram}
+	\label{fig:speciation}
+\end{figure}
+A few times a year there a a new JS framework that all the web developers think is going to be the \textbf{one}.
+AngularJs has risen and is now one of the top JS frameworks, partly I'm sure to do with the fact that Google is the project owner.
+Competition includes Facebook's React \cite{react} and EmberJS \cite{ember}.
+\\
+
+I completed two Angular courses on Code School. 
+Then for each course I completed I done the 2/3 hour screen cast that accompanied it.
+\\
+
+These helped me gain a deep understanding of controllers, services, routing and views.
+Angular is based around the Model View Controller (MVC) model, where the design, data and logic are all separated.
+\\
+Angular is a Single Page Application (SPA). Only one page ever exists, the \textit{index.html}, then each \textit{view} is loaded into a section of this page.
+Each \textit{view} has a \textit{controller} attached to it. 
+The Modal contains the data which is loaded into a template that you code, this creates the view.
+
+Two way binding is used so that as you enter information is can be seen straight away.
+\begin{figure}[H] 
+	\center{\includegraphics[width=0.75\linewidth]{img/mobile-app/two-waybinding.png}}
+	\caption{Two Way Data Binding}
+	\label{fig:speciation}
+\end{figure}
+
+\pagebreak
+\subsection{Ionic Framework}
+% talk about JS, AngularJS, CSS, HTML and Ionic.
+\begin{wrapfigure}{r}{2.5cm}
+	\includegraphics[width=3cm]{img/mobile-app/logos/ionic.png}
 \end{wrapfigure} 
+Once I understood AngularJS I completed some Ionic tutorials on \url{EggHead.io} and \url{Thinkster.io}.
 
-\cite{angularjs}
+The Ionic community is really great, the forum is very engaging, questions are answered very quickly and they post to their blog regularly.
+The  founders Max Lynch, Adam Bradley and Ben Sperry talk about various updates every few months on YouTube, they call this \textit{The Ionic Show} \cite{ionic_show}.
+\\
 
-% Here's some nicely formatted XML:
-% \begin{minted}{xml}
-% 	<this>
-% 	<looks lookswhat="good">
-% 	Good
-% 	</looks>
-% 	</this>
-% \end{minted}
+To Start an Ionic application you run these commands in bash:
+\begin{minted}{bash}
+$ ionic start myApp tabs
+$ cd myApp
+$ ionic platform add ios
+$ ionic build ios
+$ ionic emulate ios
+\end{minted}
+Everything is done through command line.
+\\
+
+Here is a simple controller:
+\begin{minted}{js}
+(function() {
+    'use strict';
+
+    angular
+        .module('canteen.controllers')
+        .controller('AboutCtrl', about);
+
+    about
+        .$inject = ['$scope', 'Orders'];
+
+    function about($scope, Orders) {
+        $scope.opening = Orders.opening;
+        $scope.closing = Orders.closing;
+        $scope.times = Orders.collTimes;
+    }
+})();
+\end{minted}
+One issue I came across is that there is no definitive way to lay out structures.
+This is a common issue in JavaScript, since the standards are so loose (which benefits it in order ways).
+\\
+
+The above layout follows John Papas AngularJS style guide \cite{angular_style_guide}.
+John Papa works with the Microsoft team who are implementing strong typing into Angular2 (through the use of MS TypeScript).
+This gives me the impression that he has a good grasp on best design practices.
+\\
+
+As you can see in the above example, I have broken up the code into its constituent components, rather then the usual nested JavaScript hierarchy.
+I think it is pleasing to the eye and easy to understand.
 
 \subsection{Tools}
-\subsubsection{\href{}{Yeoman}}
+\subsubsection{Yeoman}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/yeoman.png}
 \end{wrapfigure} 
 
-\subsubsection{\href{}{Grunt}}
+\subsubsection{Grunt}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/grunt.png}
 \end{wrapfigure} 
 
 
-\subsubsection{\href{}{Jasmine}}
+\subsubsection{Jasmine}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/jasmine.png}
 \end{wrapfigure} 
 
 
-\subsubsection{\href{}{Karma}}
+\subsubsection{Karma}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/karma.png}
 \end{wrapfigure} 
 
 
-\subsubsection{\href{}{Bower}}
+\subsubsection{Bower}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/bower.png}
 \end{wrapfigure} 
 
 
-\subsubsection{\href{}{NPM}}
+\subsubsection{NPM}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/npm.png}
 \end{wrapfigure} 
 
 
-\subsubsection{\href{}{BASH}}
+\subsubsection{BASH}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/bash.jpg}
 \end{wrapfigure} 
 
 \subsection{Alternatives}
 % alternatives? JQueryPhone, PhoneGap, Cordova, Xamarin
-\subsubsection{\href{}{Cordova}}
+\subsubsection{Cordova}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/cordova.jpg}
 \end{wrapfigure} 
 
-\subsubsection{\href{}{PhoneGap}}
+\subsubsection{PhoneGap}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/PhoneGap.png}
 \end{wrapfigure} 
 
-\subsubsection{\href{}{JQueryMobile}}
+\subsubsection{JQueryMobile}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/jquery-mobile.png}
 \end{wrapfigure} 
 
-\subsubsection{\href{}{Xamarin}}
+\subsubsection{Xamarin}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/xamarin.png}
 \end{wrapfigure} 
 
   \section{Push Server}
 
-\subsection{\href{}{CouchDB/Cloudant}}
+\subsection{CouchDB/Cloudant}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/cloudant.jpg}
 \end{wrapfigure} 
 
-\subsection{\href{}{NodeJS}}
+\subsection{NodeJS}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/nodejs.png}
 \end{wrapfigure} 
 
-\subsection{\href{}{ExpressJS}}
+\subsection{ExpressJS}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/express.png}
 \end{wrapfigure} 
