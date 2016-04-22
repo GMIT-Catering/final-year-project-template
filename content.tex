@@ -281,7 +281,7 @@ We decided that we wanted to go through this project in a modern way so we looke
 	\caption{Manifesto for Agile Software Development}
 	\label{fig:speciation}
 \end{figure}
-With these ideas behind us (and some more taken from SCRUM) we worked to:
+With these ideas behind us (and some more taken from SCRUM and RAD) we worked to:
 \begin{itemize}
 \item Have regular meetings with our client
 \item Constantly take feedback on board
@@ -329,17 +329,99 @@ MEAN:
 
 The reason we chose this is that for RAD (Rapid Application Development) the MEAN stack is very easy to use.
 Especially since the Ionic framework is already using AngularJS and shares many of the same tools including the NPM (Node Package Manager).
+\\
+\pagebreak
+Here is a piece of code from the test server.
+This code is for logging in:
+\begin{minted}[%
+breaklines,
+mathescape,
+linenos,
+numbersep=5pt,
+frame=single,
+numbersep=5pt,
+xleftmargin=0pt,
+]{js}
+// login
+app.get('/verifyuser/:customerLg/:customerPW', function(req, res){
+    var result = {
+        "customer_id":"11E4E6370B663F0D81B9EC9A743CC2AE",
+        "customer_name":"Regina",
+        "customer_surname":"Walsh",
+        "customer_cash":"10.20",
+        "customer_mobile":"0853243435"};
 
-Here is a piece of code from the test server:
-\begin{minted}{js}
-$ ionic start myApp tabs
-$ cd myApp
-$ ionic platform add ios
-$ ionic build ios
-$ ionic emulate ios
+    res.contentType('application/json');
+    res.send(JSON.stringify(result));
+});
 \end{minted}
+\begin{comment}
+This is for minted
+[%
+breaklines,
+mathescape,
+linenos,
+numbersep=5pt,
+frame=single,
+numbersep=5pt,
+xleftmargin=0pt,
+]
+\end{comment}
+I hosted this test server on Heroku \cite{heroku}.
+Heroku hosts projects as git projects, so you just need to add a config file and push to your heroku repository.
+Once complete your project is running live in the wild.
+Again this is another nudge towards RAD.
 
 \subsection{Bleeding Edge Technologies}
+We wanted to use bleeding edge technologies in our project, since this is our final year project we wanted to use it as a chance to research some novel technologies and see what is possible, while at the same time creating a robust system with a well thought out design.
+\\
+While cutting edge refers to the newest technology, it also infers that the technology has gone through the wars and is battle-tested (to a degree where it can be considered for review). 
+\\
+Bleeding edge is different in the sense that it is so new, that we don't even know if it will be around for very long, or whether the current merit it is receiving is worthy or is caused by the hype at the time.
+\\
+Bleeding edge technologies are all around, especially right now within the web development community, it seems there is a new framework or API that you \textbf{must} know every other day.
+\\
+We chose some bleeding edge technologies that we felt would stand the test of time and make it into the \textit{cutting edge} stage.
+Here is a list of some of these technologies:
+\begin{itemize}
+	\item AngularJS
+	\item Ionic Framework
+	\item NodeJs \& ExpressJS
+	\item Heroku
+\end{itemize}
+
+AngularJS is owned by Google, and Microsoft have started working with them.
+This is a good indication of a solid technology, along with all the statistics on it's performance and adoption.
+\\
+The Ionic Framework has grown to be the most popular cross platform framework.
+They work closely with the AngularJS team, and they were even presenting at the Microsoft Build 2016 conference, which is interesting since Microsoft just bought Xamarin which would be considered a competitor.
+\\
+NodeJS and ExpressJS were used for the test server and the push web application. 
+These are still in there infancy but the Node Package Manager (NPM) has in a few short years grown to be the most popular package management system out there.
+\\
+
+Here are some graphs showing the growth trend among various package managers:
+\begin{figure}[H] 
+	\center{\includegraphics[width=0.75\linewidth]{img/module_counts_year}}
+	\caption{Module Count Growth in the last Year }
+	\label{fig:speciation}
+\end{figure}
+We can see here that NPM is the clear winner.
+This is due to the fact that the community is so alive, connected and are really into open source software development.
+
+\pagebreak
+In this graph we can see exponential growth from NPM:
+\begin{figure}[H] 
+	\center{\includegraphics[width=0.75\linewidth]{img/module_counts_alltime}}
+	\caption{Module Count Growth All-time }
+	\label{fig:speciation}
+\end{figure}
+
+Server Providers that use the git \cite{git} technology to allow users to manage their servers are becoming increasingly more popular as time goes on.
+Examples of this our companies like Heroku.
+This makes it very easy to maintain, manage and utilize a RAD type of development.
+
+
 
 \section{Agility}
 % Agile / incremental and iterative approach to development. Planning, meetings.
@@ -362,13 +444,14 @@ $ ionic emulate ios
 We already mentioned in the Context chapter about why we chose Ionic, Zend and Mean stack framework/architectures.
 Here we will discuss why we chose PHP, SQL, JavaScript and JSON as our core technologies.
 \subsection{PHP}
-
+% TODO: Vlad: Why PHP?
 \subsection{SQL}
-
+% TODO: Vlad: Why SQL?
 \subsection{JavaScript}
 
 \subsection{JSON}
 
+% TODO: Vlad: Add something in relation to the web server
 
 \chapter{Technology Review} % 7-10 pages
 % intro to tech review, bla bla bla
@@ -517,7 +600,15 @@ I used SASS (Sassy CSS), this lets you use CSS in a programmatic way (using vari
 \\
 
 Here is a piece of SASS for the Ionic colours:
-\begin{minted}{css}
+\begin{minted}[%
+breaklines,
+mathescape,
+linenos,
+numbersep=5pt,
+frame=single,
+numbersep=5pt,
+xleftmargin=0pt,
+]{css}
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
 $positive:                        #5475aa !default; 
@@ -606,7 +697,15 @@ The  founders Max Lynch, Adam Bradley and Ben Sperry talk about various updates 
 \\
 
 To Start an Ionic application you run these commands in bash:
-\begin{minted}{bash}
+\begin{minted}[%
+breaklines,
+mathescape,
+linenos,
+numbersep=5pt,
+frame=single,
+numbersep=5pt,
+xleftmargin=0pt,
+]{bash}
 $ ionic start myApp tabs
 $ cd myApp
 $ ionic platform add ios
@@ -617,7 +716,15 @@ Everything is done through command line.
 \\
 
 Here is a simple controller:
-\begin{minted}{js}
+\begin{minted}[%
+breaklines,
+mathescape,
+linenos,
+numbersep=5pt,
+frame=single,
+numbersep=5pt,
+xleftmargin=0pt,
+]{js}
 (function() {
     'use strict';
 
@@ -646,6 +753,13 @@ This gives me the impression that he has a good grasp on best design practices.
 
 As you can see in the above example, I have broken up the code into its constituent components, rather then the usual nested JavaScript hierarchy.
 I think it is pleasing to the eye and easy to understand.
+
+\subsection{Heroku}
+
+\subsection{iOS Store}
+
+\subsection{Android Store}
+
 
 \subsection{Tools}
 \subsubsection{Yeoman}

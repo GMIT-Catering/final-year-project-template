@@ -9,11 +9,11 @@ See [this Stack Exchange post](http://tex.stackexchange.com/questions/99475/how-
 # Tasks
 Ronan and Vlad will work through this report, on this repository.
 
-## Branches
+### Branches
 We will both work on our own branches (`zf2` & `ionic`).
 We will merge these branches periodically into the `master` branch.
 
-## TODO:
+### TODO:
 In the document if there are sections or pieces we want one another to look at
 we will add the following comment:  
 `% TODO: Ronan: <comment>`  
