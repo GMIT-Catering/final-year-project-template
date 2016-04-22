@@ -131,28 +131,32 @@ We'll touch on our overall experience and what we would have done differently.
 % - List the resources URL(GitHub address for the project and provide a brief list of the main elements at the URL)
 \section{GitHub Links}
 The web and mobile app repositories are private so you must ask to be added as a collaborator in order to view them.
-Each of the headings are clickable, they contain links to each GitHub repository.
+Each section below has a clickable heading and contains a link to the respective GitHub repository.
+
+\subsection*{\href{https://github.com/GMIT-Catering}{GMIT Catering Organisation}}
+This GitHub organisation was created to host all repositories related to this project \cite{github_org}.
+These projects will be maintained here or forked here on completion.
 
 \subsection*{\href{http://gmit-catering.github.io/final-year-project-template/}{Gist ReadMe}}
-This contains basic instructions for using each component of the project.
+This contains basic instructions for using each component of the project \cite{gh_gist_readme}.
 
 \subsection*{\href{https://github.com/VMarisevs/CanteenOrderSystem}{Web App}}
-The food ordering web app.
+The food ordering web app \cite{gh_web_app}.
 
 \subsection*{\href{https://github.com/RonanC/gmit-catering}{Mobile App}}
-The Ionic mobile application.
+The Ionic mobile application \cite{gh_mobile_app}.
 
 \subsection*{\href{https://github.com/RonanC/gmit-catering-test-server}{Test Server}}
-The test server that we used initially to test the mobile app.
+The test server that we used initially to test the mobile app \cite{gh_test_server}.
 This received requests and sent back mock data that imitated the real server.
 
 \subsection*{\href{https://github.com/RonanC/gmitcat-push}{Push Web App}}
-This web application is a MEAN stack application.
+This web application is using the MEAN stack technologies \cite{gh_push_webapp}.
 It is hosted on Heroku and is used to save user details.
 Administrators can log in and send push notification messages to registered users.
 
-\subsection*{\href{https://github.com/GMIT-Catering/final-year-project-template}{Project Report}}
-This project report is located here.
+\subsection*{Project Report}
+The project report that you are currently reading \cite{gh_project_report}.
 
 \chapter{Context}	% 3-5 pages
 
@@ -168,24 +172,41 @@ Below we will:
 \end{itemize}
 
 \section{System Administration and Management Web Application}
+% Todo: Vlad
 I decided to do this because of that, etc
 PHP is great but maybe a Java web server would have being better, easier to modify, I already know Java.
 SQL is hard to change over time, maybe implementing a NoSQL database would have been good...
 
 \section{Mobile App}
 The mobile application is created using bleeding edge technologies such as the Ionic framework, which utilizes the AngularMVW framework, which in turn is programmed using JavaScript. HTML and CSS were also heavily utilized.
+\\
 
 Initially I had no idea about JavaScript, web development or cross platform development. I spent much time studying JavaScript, Angular, Ionic, and the MEAN Stack (MongoDB, ExpressJS, AngularJS, and NodeJS). I then spent a lot fo time trying out various cross platform development frameworks.
+\\
 
 I will speak more in detail about these technologies in the technology review chapter.
+\\
+
+Some of the features of the mobile application are:
+\begin{itemize}
+\item Login
+\item Sign-up
+\item Password Reset
+\item Food Ordering
+\item About Information
+\item Account Information
+\item Password change
+\item User History
+\item Topping up
+\end{itemize}
+I will go through these features in detail in the system design chapter.
 
 \subsection{Cross Platform Frameworks}
+I first tried out Cordova \cite{cordova}, which I found had the capabilities to do pretty much anything, but the community and framework is very sparse, it's hard to get anything up \& running, and the styling's are horrid.
+\\
 
-I first tried out Cordova, which I found had the capabilities to do pretty much anything, but the community and framework is very sparse, it's hard to get anything up and running, and the stylings are horrid.
-\cite{https://cordova.apache.org/}
-
-Next I tried out JQueryMobile which had better styling but again I came across many issues.
-\cite{http://jquerymobile.com/}
+Next I tried out JQueryMobile \cite{jquery_mobile} which had better styling but again I came across many issues.
+\\
 
 Finally I came across the Ionic Framework which uses Cordova underneath. This framework has a huge community of developers, it has the support of Google, Microsoft and many other large companies. They closely work with the Angular team at Google and the TypeScript team at Microsoft. 
 They have a 24/7 group chat system set up with various sub rooms. 
@@ -197,7 +218,7 @@ With Ionic you get:
 \item Extensive tooling. Starting an app, templates, app store image creation, logo creator, etc
 \item Rapid development cycle, there are constant updates (which can cause issues, but is usually great)
 \end{itemize}
-\cite{http://ionicframework.com/}
+\cite{ionic}
 
 \subsection{Tooling}
 Once I decided on using the Ionic framework I spent my time completing various JavaScript, Angular and Ionic tutorials. This was a steep learning curve as there is so much tooling for all the JavaScript frameworks.
@@ -246,10 +267,77 @@ Users can:
 	\item We tested out various technologies at each step of the way and discussed why we were choosing each one.
 \end{itemize}
 \end{comment}
+When we began this project we knew we had to split it up into sections and allocate parts to one another.  
+Since Ronan had worked on many mobile applications before and Vlad had created various web applications in conjunction with large databases we decided Ronan would take on the mobile side and Vlad the web app \& database.
+\\
+
+We have already spoken in the Introduction why we chose the technologies we chose so here we will focus on our implementation of these technologies.
 
 \section{Direction}
 %How we went about our project
+We decided that we wanted to go through this project in a modern way so we looked into the \textit{"Manifesto for Agile Software Development"} \cite{manifesto_for_agile}:
+\begin{figure}[H] 
+	\center{\includegraphics[width=1.0\linewidth]{img/manifesto_for_agile}}
+	\caption{Manifesto for Agile Software Development}
+	\label{fig:speciation}
+\end{figure}
+With these ideas behind us (and some more taken from SCRUM) we worked to:
+\begin{itemize}
+\item Have regular meetings with our client
+\item Constantly take feedback on board
+\item Change designs throughout development where possible
+\item Break down tasks into their constituents and work through them
+\end{itemize}
+
+We used the GitHub issue tracker to work through tasks, flag bugs and add enhancement requests.
+We found that the regular meetings and feedback were great for tweaking design but it held us back in many respects.
+There were times when we needed to overhaul the design that took much time, especially when it involved changing the database scheme (SQL does not like this).
+
 \subsection{Interface}
+Due the fact that the mobile app relied on the server which would not be complete for some time, we needed to come up with a common interface we could both program towards.
+This idea was inspired by Edsgar Dijkstra:
+\begin{quote}
+	% \blindtext
+	\itshape He worked closely with Bram J. Loopstra and Carel S. Scholten, who had been hired to build a computer. Their mode of interaction remains a model of disciplined engineering: They would first decide upon the interface between the hardware and the software, by writing a programming manual. Then the hardware designers would have to be faithful to their part of the contract, while Dijkstra, the programmer, would write software for the nonexistent machine. Two of the lessons he learned from this experience were the importance of clear documentation, and that program debugging can be largely avoided through careful design.
+	\hfill 
+	\\
+	- The University of Texas at Austin - The General Faculty \cite{dijkstra_interface}
+	% \par
+	% \begingroup
+	% \leftskip4em
+	% \rightskip\leftskip
+	% \blindtext
+	% \par
+	% \endgroup
+	% \blindtext
+\end{quote}
+
+We decided to create a RESTful API on your web server, to which the mobile application could query.
+In order to test the mobile application in the mean time, we created a test server that would receive a request and return mock data.
+We could then switch between the real and test server with one line of code change.
+This also helped us find bugs, if the test server worked and the real server did not, then we knew there was an error on the real server.
+This test server was written with the MEAN stack of technologies (except without MongoDB).
+\\
+
+MEAN:
+\begin{itemize}
+\item MongoDB
+\item ExpressJS
+\item AngularJS
+\item NodeJS
+\end{itemize}
+
+The reason we chose this is that for RAD (Rapid Application Development) the MEAN stack is very easy to use.
+Especially since the Ionic framework is already using AngularJS and shares many of the same tools including the NPM (Node Package Manager).
+
+Here is a piece of code from the test server:
+\begin{minted}{js}
+$ ionic start myApp tabs
+$ cd myApp
+$ ionic platform add ios
+$ ionic build ios
+$ ionic emulate ios
+\end{minted}
 
 \subsection{Bleeding Edge Technologies}
 
