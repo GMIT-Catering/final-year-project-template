@@ -131,28 +131,32 @@ We'll touch on our overall experience and what we would have done differently.
 % - List the resources URL(GitHub address for the project and provide a brief list of the main elements at the URL)
 \section{GitHub Links}
 The web and mobile app repositories are private so you must ask to be added as a collaborator in order to view them.
-Each of the headings are clickable, they contain links to each GitHub repository.
+Each section below has a clickable heading and contains a link to the respective GitHub repository.
+
+\subsection*{\href{https://github.com/GMIT-Catering}{GMIT Catering Organisation}}
+This GitHub organisation was created to host all repositories related to this project \cite{github_org}.
+These projects will be maintained here or forked here on completion.
 
 \subsection*{\href{http://gmit-catering.github.io/final-year-project-template/}{Gist ReadMe}}
-This contains basic instructions for using each component of the project.
+This contains basic instructions for using each component of the project \cite{gh_gist_readme}.
 
 \subsection*{\href{https://github.com/VMarisevs/CanteenOrderSystem}{Web App}}
-The food ordering web app.
+The food ordering web app \cite{gh_web_app}.
 
 \subsection*{\href{https://github.com/RonanC/gmit-catering}{Mobile App}}
-The Ionic mobile application.
+The Ionic mobile application \cite{gh_mobile_app}.
 
 \subsection*{\href{https://github.com/RonanC/gmit-catering-test-server}{Test Server}}
-The test server that we used initially to test the mobile app.
+The test server that we used initially to test the mobile app \cite{gh_test_server}.
 This received requests and sent back mock data that imitated the real server.
 
 \subsection*{\href{https://github.com/RonanC/gmitcat-push}{Push Web App}}
-This web application is a MEAN stack application.
+This web application is using the MEAN stack technologies \cite{gh_push_webapp}.
 It is hosted on Heroku and is used to save user details.
 Administrators can log in and send push notification messages to registered users.
 
-\subsection*{\href{https://github.com/GMIT-Catering/final-year-project-template}{Project Report}}
-This project report is located here.
+\subsection*{Project Report}
+The project report that you are currently reading \cite{gh_project_report}.
 
 \chapter{Context}	% 3-5 pages
 
@@ -168,26 +172,43 @@ Below we will:
 \end{itemize}
 
 \section{System Administration and Management Web Application}
+% TODO: Vlad: 
 I decided to do this because of that, etc
 PHP is great but maybe a Java web server would have being better, easier to modify, I already know Java.
 SQL is hard to change over time, maybe implementing a NoSQL database would have been good...
 
 \section{Mobile App}
 The mobile application is created using bleeding edge technologies such as the Ionic framework, which utilizes the AngularMVW framework, which in turn is programmed using JavaScript. HTML and CSS were also heavily utilized.
+\\
 
 Initially I had no idea about JavaScript, web development or cross platform development. I spent much time studying JavaScript, Angular, Ionic, and the MEAN Stack (MongoDB, ExpressJS, AngularJS, and NodeJS). I then spent a lot fo time trying out various cross platform development frameworks.
+\\
 
 I will speak more in detail about these technologies in the technology review chapter.
+\\
+
+Some of the features of the mobile application are:
+\begin{itemize}
+\item Login
+\item Sign-up
+\item Password Reset
+\item Food Ordering
+\item About Information
+\item Account Information
+\item Password change
+\item User History
+\item Topping up
+\end{itemize}
+I will go through these features in detail in the system design chapter.
 
 \subsection{Cross Platform Frameworks}
+I first tried out Cordova \cite{cordova}, which I found had the capabilities to do pretty much anything, but the community and framework is very sparse, it's hard to get anything up \& running, and the styling's are horrid.
+\\
 
-I first tried out Cordova, which I found had the capabilities to do pretty much anything, but the community and framework is very sparse, it's hard to get anything up and running, and the stylings are horrid.
-\cite{https://cordova.apache.org/}
+Next I tried out JQueryMobile \cite{jquery_mobile} which had better styling but again I came across many issues.
+\\
 
-Next I tried out JQueryMobile which had better styling but again I came across many issues.
-\cite{http://jquerymobile.com/}
-
-Finally I came across the Ionic Framework which uses Cordova underneath. This framework has a huge community of developers, it has the support of Google, Microsoft and many other large companies. They closely work with the Angular team at Google and the TypeScript team at Microsoft. 
+Finally I came across the Ionic Framework \cite{ionic} which uses Cordova underneath. This framework has a huge community of developers, it has the support of Google, Microsoft and many other large companies. They closely work with the Angular team at Google and the TypeScript team at Microsoft. 
 They have a 24/7 group chat system set up with various sub rooms. 
 They have amazing documentation, regular blog posts, quick response to questions on the blog, forums and chat. 
 With Ionic you get:
@@ -197,7 +218,6 @@ With Ionic you get:
 \item Extensive tooling. Starting an app, templates, app store image creation, logo creator, etc
 \item Rapid development cycle, there are constant updates (which can cause issues, but is usually great)
 \end{itemize}
-\cite{http://ionicframework.com/}
 
 \subsection{Tooling}
 Once I decided on using the Ionic framework I spent my time completing various JavaScript, Angular and Ionic tutorials. This was a steep learning curve as there is so much tooling for all the JavaScript frameworks.
@@ -246,41 +266,293 @@ Users can:
 	\item We tested out various technologies at each step of the way and discussed why we were choosing each one.
 \end{itemize}
 \end{comment}
+When we began this project we knew we had to split it up into sections and allocate parts to one another.  
+Since Ronan had worked on many mobile applications before and Vlad had created various web applications in conjunction with large databases we decided Ronan would take on the mobile side and Vlad the web app \& database.
+\\
+
+We have already spoken in the Introduction why we chose the technologies we chose so here we will focus on our implementation of these technologies.
 
 \section{Direction}
 %How we went about our project
+% agile
+We took some inspiration from the "Manifesto for Agile Software Development" and tried to implement some of the aspects.
+As well as this we looked into SCRUM and RAD.
+
+We used the GitHub issue tracker to work through tasks, flag bugs and add enhancement requests.
+We found that the regular meetings and feedback were great for tweaking design but it held us back in many respects.
+There were times when we needed to overhaul the design that took much time, especially when it involved changing the database scheme (SQL does not like this).
+
 \subsection{Interface}
+Due the fact that the mobile app relied on the server which would not be complete for some time, we needed to come up with a common interface we could both program towards.
+This idea was inspired by Edsgar Dijkstra:
+\begin{quote}
+	% \blindtext
+	\itshape He worked closely with Bram J. Loopstra and Carel S. Scholten, who had been hired to build a computer. Their mode of interaction remains a model of disciplined engineering: They would first decide upon the interface between the hardware and the software, by writing a programming manual. Then the hardware designers would have to be faithful to their part of the contract, while Dijkstra, the programmer, would write software for the nonexistent machine. Two of the lessons he learned from this experience were the importance of clear documentation, and that program debugging can be largely avoided through careful design.
+	\hfill 
+	\\
+	- The University of Texas at Austin - The General Faculty \cite{dijkstra_interface}
+	% \par
+	% \begingroup
+	% \leftskip4em
+	% \rightskip\leftskip
+	% \blindtext
+	% \par
+	% \endgroup
+	% \blindtext
+\end{quote}
+
+We decided to create a RESTful API on your web server, to which the mobile application could query.
+In order to test the mobile application in the mean time, we created a test server that would receive a request and return mock data.
+We could then switch between the real and test server with one line of code change.
+This also helped us find bugs, if the test server worked and the real server did not, then we knew there was an error on the real server.
+This test server was written with the MEAN stack of technologies (except without MongoDB).
+\\
+
+MEAN:
+\begin{itemize}
+\item MongoDB
+\item ExpressJS
+\item AngularJS
+\item NodeJS
+\end{itemize}
+
+The reason we chose this is that for RAD (Rapid Application Development) the MEAN stack is very easy to use.
+Especially since the Ionic framework is already using AngularJS and shares many of the same tools including the NPM (Node Package Manager).
+\\
+\pagebreak
+Here is a piece of code from the test server.
+This code is for logging in:
+\begin{minted}[%
+breaklines,
+mathescape,
+linenos,
+numbersep=5pt,
+frame=single,
+numbersep=5pt,
+xleftmargin=0pt,
+]{js}
+// login
+app.get('/verifyuser/:customerLg/:customerPW', function(req, res){
+    var result = {
+        "customer_id":"11E4E6370B663F0D81B9EC9A743CC2AE",
+        "customer_name":"Regina",
+        "customer_surname":"Walsh",
+        "customer_cash":"10.20",
+        "customer_mobile":"0853243435"};
+
+    res.contentType('application/json');
+    res.send(JSON.stringify(result));
+});
+\end{minted}
+\begin{comment}
+This is for minted
+[%
+breaklines,
+mathescape,
+linenos,
+numbersep=5pt,
+frame=single,
+numbersep=5pt,
+xleftmargin=0pt,
+]
+\end{comment}
+I hosted this test server on Heroku \cite{heroku}.
+Heroku hosts projects as git projects, so you just need to add a config file and push to your heroku repository.
+Once complete your project is running live in the wild.
+Again this is another nudge towards RAD.
 
 \subsection{Bleeding Edge Technologies}
+We wanted to use bleeding edge technologies in our project, since this is our final year project we wanted to use it as a chance to research some novel technologies and see what is possible, while at the same time creating a robust system with a well thought out design.
+\\
+While cutting edge refers to the newest technology, it also infers that the technology has gone through the wars and is battle-tested (to a degree where it can be considered for review). 
+\\
+Bleeding edge is different in the sense that it is so new, that we don't even know if it will be around for very long, or whether the current merit it is receiving is worthy or is caused by the hype at the time.
+\\
+Bleeding edge technologies are all around, especially right now within the web development community, it seems there is a new framework or API that you \textbf{must} know every other day.
+\\
+We chose some bleeding edge technologies that we felt would stand the test of time and make it into the \textit{cutting edge} stage.
+Here is a list of some of these technologies:
+\begin{itemize}
+	\item AngularJS
+	\item Ionic Framework
+	\item NodeJs \& ExpressJS
+	\item Heroku
+\end{itemize}
+
+AngularJS is owned by Google, and Microsoft have started working with them.
+This is a good indication of a solid technology, along with all the statistics on it's performance and adoption.
+\\
+The Ionic Framework has grown to be the most popular cross platform framework.
+They work closely with the AngularJS team, and they were even presenting at the Microsoft Build 2016 conference, which is interesting since Microsoft just bought Xamarin which would be considered a competitor.
+\\
+NodeJS and ExpressJS were used for the test server and the push web application. 
+These are still in there infancy but the Node Package Manager (NPM) has in a few short years grown to be the most popular package management system out there.
+\\
+We did not know any of these technologies coming into this project, so the learning curve was very high and it tested us throughout the development life-cycle. Many things were learned from proper planning, emailing, documenting progress, using Git properly, setting milestones, dealing with clients and the time spent learning/studying technologies compared to actually implementing them.
+\\
+
+Here are some graphs showing the growth trend among various package managers \cite{module_counts}:
+\begin{figure}[H] 
+	\center{\includegraphics[width=0.75\linewidth]{img/module_counts_year}}
+	\caption{Module Count Growth in the last Year }
+	\label{fig:speciation}
+\end{figure}
+We can see here that NPM is the clear winner.
+This is due to the fact that the community is so alive, connected and are really into open source software development.
+
+\pagebreak
+In this graph we can see exponential growth from NPM:
+\begin{figure}[H] 
+	\center{\includegraphics[width=0.75\linewidth]{img/module_counts_alltime}}
+	\caption{Module Count Growth All-time }
+	\label{fig:speciation}
+\end{figure}
+
+Server Providers that use the git \cite{git} technology to allow users to manage their servers are becoming increasingly more popular as time goes on.
+Examples of this our companies like Heroku.
+This makes it very easy to maintain, manage and utilize a RAD type of development.
 
 \section{Agility}
 % Agile / incremental and iterative approach to development. Planning, meetings.
+We wanted to be flexible in our approach since most of the aspects involved from meetings, planning, project development and the technologies were new to use. Agile suited us well.
+
 \subsection{Agile}
+We decided that we wanted to go through this project in a modern way so we looked into the \textit{"Manifesto for Agile Software Development"} \cite{manifesto_for_agile}:
+\begin{figure}[H] 
+	\center{\includegraphics[width=1.0\linewidth]{img/manifesto_for_agile}}
+	\caption{Manifesto for Agile Software Development}
+	\label{fig:speciation}
+\end{figure}
+With these ideas behind us (and some more taken from SCRUM and RAD) we worked to:
+\begin{itemize}
+	\item Have regular meetings with our client
+	\item Constantly take feedback on board
+	\item Change designs throughout development where possible
+	\item Break down tasks into their constituents and work through them
+\end{itemize}
 
 \subsection{Meetings}
+Initially we had a weekly meeting with our client where sometimes others would be present (one or two other clients or our supervisor). 
+We also held a weekly meeting with our supervisor.
+As time went on we had meetings every two or three weeks (depending on the workload and what needed to be done), in between our meetings we kept in constant communication making sure that everyone knew there tasks.
+
+\pagebreak
+\textbf{Here are the minutes from two of our meetings this year:}
+\begin{figure}[H] 
+	\center{\includegraphics[width=1.0\linewidth]{img/2016_Meeting_1_Minutes}}
+	\caption{2016 Meeting \#1 - Minutes}
+	\label{fig:speciation}
+\end{figure}
+\begin{figure}[H] 
+	\center{\includegraphics[width=1.0\linewidth]{img/2016_Meeting_2_Minutes}}
+	\caption{2016 Meeting \#2 - Minutes}
+	\label{fig:speciation}
+\end{figure}
 
 \subsection{Team Work}
+We divided up all the work initially and along the way.
+We used the GitHub issue tracker to flag bugs and highlight different improvements that could be made to the project.
+We met up a few times a week to go through the project and make sure everything was syncing.
+We learned much about working in teams from this project.
 
 \section{Testing}
 %What about validation and testing? Junit or some other framework.
-\subsection{Test Server}
+Since there are so many different aspects to this project it was hard to bring in a testing framework.
+I used created some test cases in Java with the Selenium WebDriver library in order to go through each tab of the web app and push server.
+This helped us verify everything was working fine, we just needed to sit back and watch the test cases pass.
+\\
+For the mobile app I tried out Karma unit tests in conjunction with the Jasmine library.
+We had an okay experience with this but we feel it is so cumbersome to set up that it may just be better to do user testing.
+\\
+We downloaded the mobile app on Android and iOS, and tested all the features out in various locations.
+We did user testing by getting people from our year and the year below in software development and also some students who are not in the IT field to test all the features out and tell us the best and worst things they encountered within the application. 
+This helped us improve the applications user experience, design and to kink our any bugs.
+\\
+We went through the web application with our client many times and updated it to make it easily usable for them.
 
+\subsection{Test Server}
+The test server contained all the routes necessary to mock the real server.
+Here are the routes used:
+	    \begin{table}[H]
+	    	\centering
+	    	\begin{tabular}{p{8cm}p{5cm}}
+	    		\toprule \\
+	    		\textbf{Route} & \textbf{Use} \\ \hline
+	    		/ & Homepage \\  \hline
+	    		/createuser/[data] & New User \\ \hline
+	    		/verifyuser/[data] & Login \\ \hline
+	    		/getfood & Get Menu \\ \hline
+	    		/userhistory/[data] & Get User History \\ \hline
+	    		/buyfood/[data] & Order Food \\ \hline
+	    		/changeuserpw/[data] & Change Password \\ \hline
+	    		/workingtime/[data] & Opening Times \\ \hline
+	    		/topup/[data] & Topup Account\\ \hline
+	    		/recoveruserpw/[data] & Reset Password \\ \hline
+	    		\bottomrule
+	    	\end{tabular}
+	    	\caption{Routes table}
+	    	\label{table:RoutesTable}
+	    \end{table}
+This is actually a good place to get a simple overview of how the real server works.
+This is our interface.
+\\
+In order to switch between the test and real server we only need to change one line of code.
+This file is located in:
+\\
+www/app/app.js
+\begin{minted}[breaklines, mathescape, linenos, numbersep=5pt, frame=single, numbersep=5pt, xleftmargin=0pt]{css}
+.constant('SERVER', {
+  // test server
+  // url: 'https://catering-test-server.herokuapp.com/',
+  	
+  // real server
+  url: 'http://canteenapplication.vmarisevs.me/mobileapplication/',
+});
+\end{minted}
 \section{Source Control}
 %If team based, did you use GitHub during the development process.
-\subsection{GitHub}
+We made sure to use source control throughout our project, utilizing branches and constant commits.
+Between the mobile app and web app alone we have a total of \textbf{210} commits.
 
-\section{Choice}
+\subsection{GitHub}
+We chose to use GitHub as our source control repository vendor as it is tried and trusted, we are used to it, we use it currently in college and it hosts some of the largest projects on the web. Also the issue tracker, wiki, web site builder and various other features are compelling.
+
+\section{Choices}
 %Selection criteria for algorithms, languages, platforms and technologies.
 We already mentioned in the Context chapter about why we chose Ionic, Zend and Mean stack framework/architectures.
 Here we will discuss why we chose PHP, SQL, JavaScript and JSON as our core technologies.
 \subsection{PHP}
-
+% TODO: Vlad: Why PHP?
 \subsection{SQL}
-
+% TODO: Vlad: Why SQL?
 \subsection{JavaScript}
+JavaScript is the language that the Ionic and Angular core development team use for creating applications.
+You can write any JavaScript from any framework in other languages like CoffeeScript or TypeScript.
+\\
+
+These follow stricter rules and allow JavaScript to be strongly typed.
+This gives you auto-completion amongst other things.
+It nearly a bit more like you're writing Java with these languages.
+These languages are transpiled into JavaScript (as opposed to compiled).
+\\
+\textit{*The difference between transpiling and compiling is that transpiling compiles to the same abstraction level}.
+\\
+
+TypeScript and JavaScript are at the same abstraction level.
+Transpiling is a form of compiling (a subset).
+Transpilers are gaining popularity and often take the direction of up and coming standards.
+If you learn Microsoft s TypeScript you are learning much of the new JavaScript standards to come.
+\\
+\textit{*TypeScript is being incorporated into Angular2.}
+\\
+
+If I were to do this project again in the future I would consider using TypeScript instead of JavaScript.
 
 \subsection{JSON}
+We chose to use JSON for passing messages between the mobile and web applications due to the fact that it is so lightweight and easy to create and parse.
+Since the Ionic application is written with JavaScript it stores all it's data in JSON format by default.
 
+% TODO: Vlad: Add something in relation to the web server
 
 \chapter{Technology Review} % 7-10 pages
 % intro to tech review, bla bla bla
@@ -364,31 +636,6 @@ To solve this problems I have found \textit{Server Grove} hosting company that f
 
 
 \pagebreak
-  \section{GitHub}
-\begin{wrapfigure}{r}{2.5cm}
-\includegraphics[width=3cm]{img/zf2/github-logo.png}
-\end{wrapfigure} 
-We used GitHub \cite{github} throughout our project in order to utilize source control and keeping track of versions.
-We found that it was very useful in that we could have separate repositories for the different parts of the project.
-When we did work on the same repository we each had our own branch to which we would merge intermittently into the \textit{master} branch.
-We also used the \textit{issue tracker} to raise any issues/bugs we noticed on each others projects, or to mention an enhancement that could be incorporated.
-
-\begin{figure}[H] 
-	\center{\includegraphics[width=0.75\linewidth]{img/issue_tracker}}
-	\caption{Issue Tracker}
-	\label{fig:speciation}
-\end{figure}
-
-
-We also created an organisation, which acts as an entity.
-We forked all our repositories there and used it as a central hub for the overall project \cite{github_org}.
-\begin{figure}[H] 
-	\center{\includegraphics[width=0.75\linewidth]{img/github_org}}
-	\caption{GMIT Catering GitHub Org}
-	\label{fig:speciation}
-\end{figure}
-
-\pagebreak
   \section{Mobile App} % 4 pages
 The technology stack I chose to use for this project is quite extensive.  
 Ionic is heavily based in the JavaScript community which is known for it's enormous amount of libraries and dependencies.
@@ -432,7 +679,7 @@ I used SASS (Sassy CSS), this lets you use CSS in a programmatic way (using vari
 \\
 
 Here is a piece of SASS for the Ionic colours:
-\begin{minted}{css}
+\begin{minted}[breaklines, mathescape, linenos, numbersep=5pt, frame=single, numbersep=5pt, xleftmargin=0pt]{css}
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
 $positive:                        #5475aa !default; 
@@ -516,12 +763,20 @@ Two way binding is used so that as you enter information is can be seen straight
 \end{wrapfigure} 
 Once I understood AngularJS I completed some Ionic tutorials on \url{EggHead.io} and \url{Thinkster.io}.
 
-The Ionic community is really great, the forum is very engaging, questions are answered very quickly and they post to their blog regularly.
+The Ionic \cite{ionic} community is really great, the forum is very engaging, questions are answered very quickly and they post to their blog regularly.
 The  founders Max Lynch, Adam Bradley and Ben Sperry talk about various updates every few months on YouTube, they call this \textit{The Ionic Show} \cite{ionic_show}.
 \\
 
 To Start an Ionic application you run these commands in bash:
-\begin{minted}{bash}
+\begin{minted}[%
+breaklines,
+mathescape,
+linenos,
+numbersep=5pt,
+frame=single,
+numbersep=5pt,
+xleftmargin=0pt,
+]{bash}
 $ ionic start myApp tabs
 $ cd myApp
 $ ionic platform add ios
@@ -532,7 +787,15 @@ Everything is done through command line.
 \\
 
 Here is a simple controller:
-\begin{minted}{js}
+\begin{minted}[%
+breaklines,
+mathescape,
+linenos,
+numbersep=5pt,
+frame=single,
+numbersep=5pt,
+xleftmargin=0pt,
+]{js}
 (function() {
     'use strict';
 
@@ -562,23 +825,113 @@ This gives me the impression that he has a good grasp on best design practices.
 As you can see in the above example, I have broken up the code into its constituent components, rather then the usual nested JavaScript hierarchy.
 I think it is pleasing to the eye and easy to understand.
 
+\subsection{Heroku}
+\begin{wrapfigure}{r}{2.5cm}
+	\includegraphics[width=3cm]{img/mobile-app/logos/heroku.jpg}
+\end{wrapfigure} 
+We used Heroku \cite{heroku} to host the push and test servers.
+Heroku is great for RAD, it is so simple to get a project live.
+It treats the project that is hosted as a git repository.
+
+In order to use Heroku you:
+\begin{itemize}
+	\item Install the Heroku Tool-belt
+	\item Create a Procfile
+	\item Initialize a Git repository
+	\item Create a Heroku project via command line
+	\item Commit and Push to the Heroku remote
+\end{itemize}
+
+\textbf{Here are the commands to create a new server and push to it} (once pushed it goes live instantly):
+\begin{minted}[breaklines, mathescape, linenos, numbersep=5pt, frame=single, numbersep=5pt, xleftmargin=0pt]{bash}
+$ heroku login
+$ git init
+$ heroku create
+$ git add .
+$ git commit -a
+$ git push heroku master
+$ heroku open
+\end{minted}
+
+\textbf{Here is the Procfile} (this is the Heroku config file for the project, here we give the server the command to start our project):
+\begin{minted}[breaklines, mathescape, linenos, numbersep=5pt, frame=single, numbersep=5pt, xleftmargin=0pt]{yaml}
+web: node server.js
+\end{minted}
+
+\subsection{iOS Store}
+\begin{wrapfigure}{r}{2.5cm}
+	\includegraphics[width=3cm]{img/mobile-app/logos/ios.png}
+\end{wrapfigure} 
+Apples iOS store \cite{ios} is tricky to get used to, first you must submit an application for a developer account which costs €99 per year. They require much information. Once complete you have to create a developer certificate, provisioning profile, push notification certificate, download them, and sign them locally. You have to get these certificates for both production and development purposes, as Apple see these as completely separate applications.
+\\
+
+Once complete you install XCode (for developing iOS apps), compile the application, login to your profile in XCode, go through the local setup, then archive the application in XCode and submit this to the store (through XCode). After a few hours you get an email saying that the Archive is okay. You then go to the ITunesConnect website, login, and start the store application process, this takes numerous steps.
+\\
+Once complete you can add the previous archived file and submit for approval to the store, this takes 1 to 2 weeks to complete, often resulting in a change wish the revision team want to see updated. You must provide the revision team with a mock account to test the application.
+\\
+I got used to this process after my third or fourth update.
+\\
+This process results in only top quality applications making it into the iOS stores.
+The iOS store makes more money then the Android store by a long shot.
+
+\subsection{Android Store}
+\begin{wrapfigure}{r}{2.5cm}
+	\includegraphics[width=3cm]{img/mobile-app/logos/android.png}
+\end{wrapfigure} 
+Submitting an app to the Android \cite{android} (Google Play) store is a joy.
+First you go to the Google Play website, login with your Google account, give some extra details, pay €25 (per year) and you are instantly in.
+You then click on "create new app", fill out some details and it asks for the app binary file.
+\\
+In order to generate the Android binary file you must create a local android keystore (for signing ) compile the app with the Ionic tool, sign it, zipalign it and then submit it to the Google play store.
+You submit it by simply dragging it into the Google Play web site window. Within two hours the application will be live.
+
+I looked into why it's so quick, and apparently they test your application after it is submitted, this leads to happy developers.
+
+Here is the bash script I create to automate the Android build process:
+\begin{minted}[breaklines, mathescape, linenos, numbersep=5pt, frame=single, numbersep=5pt, xleftmargin=0pt]{bash}
+#! /usr/bin/env sh
+
+ionic build android --release
+rm gmitcat.apk
+cp platforms/android/build/outputs/apk/android-release-unsigned.apk .
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ./ronanc.keystore android-release-unsigned.apk ronanc
+
+zipalign -v 4 android-release-unsigned.apk gmitcat.apk
+
+cp gmitcat.apk ~/Dropbox/releases/
+\end{minted}
+\textit{*I couldn't do this for iOS as you need to use XCode.}
+
+\subsection{Windows Phone Store}
+\begin{wrapfigure}{r}{2.5cm}
+	\includegraphics[width=3cm]{img/mobile-app/logos/windows.png}
+\end{wrapfigure} 
+The Windows Phone store \cite{windows_phone} is actually not that bad, I have already submitted 36 applications (mostly micro applications) to this store.
+It's free to sign up and the set-up process is very simple, lots of check-boxes and drop-down menus.
+\\
+The reason we didn't create a Windows Phone version is that firstly it is not supported by Ionic. Cordova (which Ionic is based on) does support it, but to get it working takes a lot of work, and we felt that the market for Windows Phone users is so small that it was not worth our time.
+\\
+Ionic2 will be supporting Windows Universal Platform applications, so in the future this application could be migrated to the Windows Platform quite easily.
+
 \subsection{Tools}
 \subsubsection{Yeoman}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/yeoman.png}
-\end{wrapfigure} 
+%\end{wrapfigure} untrack
+\cite{jasmine}
 
 \subsubsection{Grunt}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/grunt.png}
 \end{wrapfigure} 
-
+\cite{jasmine}
 
 \subsubsection{Jasmine}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/jasmine.png}
 \end{wrapfigure} 
-
+\cite{jasmine}
 
 \subsubsection{Karma}
 \begin{wrapfigure}{r}{2.5cm}
@@ -642,12 +995,40 @@ I think it is pleasing to the eye and easy to understand.
 \includegraphics[width=3cm]{img/mobile-app/logos/express.png}
 \end{wrapfigure} 
 
-
+  \pagebreak
+  \section{GitHub}
+  \begin{wrapfigure}{r}{2.5cm}
+  	\includegraphics[width=3cm]{img/zf2/github-logo.png}
+  \end{wrapfigure} 
+  We used GitHub \cite{github} throughout our project in order to utilize source control and keeping track of versions.
+  We found that it was very useful in that we could have separate repositories for the different parts of the project.
+  When we did work on the same repository we each had our own branch to which we would merge intermittently into the \textit{master} branch.
+  We also used the \textit{issue tracker} to raise any issues/bugs we noticed on each others projects, or to mention an enhancement that could be incorporated.
+  
+  \begin{figure}[H] 
+  	\center{\includegraphics[width=0.75\linewidth]{img/issue_tracker}}
+  	\caption{Issue Tracker}
+  	\label{fig:speciation}
+  \end{figure}
+  
+  
+  We also created an organisation, which acts as an entity.
+  We forked all our repositories there and used it as a central hub for the overall project \cite{github_org}.
+  \begin{figure}[H] 
+  	\center{\includegraphics[width=0.75\linewidth]{img/github_org}}
+  	\caption{GMIT Catering GitHub Org}
+  	\label{fig:speciation}
+  \end{figure}
+  
+  \pagebreak
 
   \section{JSON REST interface architecture}	% 1 pages
+  % TODO: Vlad: 
   \subsection{HTTP Requests}
+  % TODO: Vlad: 
   % talk about the HTTP get/post requests used via the interface from the phone and server
   \subsection{Custom API}
+  % TODO: Vlad: 
   % The web server has a custom API that the mobile app uses
 
   ~\cite{JSON_REST_interface}
@@ -1163,6 +1544,7 @@ pdfMake.createPdf(docDefinition).download('optionalName.pdf');
 		\end{figure}
 		
 	\subsection{Ionic routes \& functions}
+	% TODO: Ronan: code snippets of all HTTP Requests from Ionic app and how we saved them.
 		\subsubsection{Authenticate customer}
 		\subsubsection{Recover customers password}
 		\subsubsection{Change customers password}
@@ -1181,7 +1563,13 @@ pdfMake.createPdf(docDefinition).download('optionalName.pdf');
 
 
   \section{Mobile App}
+% Screen shots of all the sections in the application
 
+% comment on each feature and use case
+
+% lots of code snippets
+
+% Uml Diagram
 
 \chapter{System Evaluation}	% n-m pages
 \section{Web App}
@@ -1196,9 +1584,19 @@ pdfMake.createPdf(docDefinition).download('optionalName.pdf');
 		Current web application uses both modules, domPDF is used for creating new vouchers. It generates maximum one page with 8 vouchers on it. They have specific margins for special paper and remotely created QR code to let users simply scan the code and top up their account balance. pdfMake can not be used for loading remote images, they have to be on the same origin. But when it comes to generate large list of invoices we are using a pdfMAKE that will send out the data to users computer and using JavaScript generates a pdf report that can be printed or saved.
 	
 \section{Mobile App}
+% why and how we chose what
 
+% what other technologies did we test out?
+
+% is javascript/ionic robust?
+
+% is it performant compared to Android and Swift?
+% do we miss native sdk support?
+
+% limitations of using such a new framework? breaks a lot?
 
 \chapter{Conclusion}	% 1-3 pages
+% talk about the project as a whole, what we learnt, what we would do differently, what we gained, high level stuff, last line should be quotable, maybe quote somebody
 
 \begin{comment}
 \begin{itemize}
