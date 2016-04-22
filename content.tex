@@ -275,19 +275,9 @@ We have already spoken in the Introduction why we chose the technologies we chos
 
 \section{Direction}
 %How we went about our project
-We decided that we wanted to go through this project in a modern way so we looked into the \textit{"Manifesto for Agile Software Development"} \cite{manifesto_for_agile}:
-\begin{figure}[H] 
-	\center{\includegraphics[width=1.0\linewidth]{img/manifesto_for_agile}}
-	\caption{Manifesto for Agile Software Development}
-	\label{fig:speciation}
-\end{figure}
-With these ideas behind us (and some more taken from SCRUM and RAD) we worked to:
-\begin{itemize}
-\item Have regular meetings with our client
-\item Constantly take feedback on board
-\item Change designs throughout development where possible
-\item Break down tasks into their constituents and work through them
-\end{itemize}
+% agile
+We took some inspiration from the "Manifesto for Agile Software Development" and tried to implement some of the aspects.
+As well as this we looked into SCRUM and RAD.
 
 We used the GitHub issue tracker to work through tasks, flag bugs and add enhancement requests.
 We found that the regular meetings and feedback were great for tweaking design but it held us back in many respects.
@@ -399,8 +389,10 @@ They work closely with the AngularJS team, and they were even presenting at the 
 NodeJS and ExpressJS were used for the test server and the push web application. 
 These are still in there infancy but the Node Package Manager (NPM) has in a few short years grown to be the most popular package management system out there.
 \\
+We did not know any of these technologies coming into this project, so the learning curve was very high and it tested us throughout the development life-cycle. Many things were learned from proper planning, emailing, documenting progress, using Git properly, setting milestones, dealing with clients and the time spent learning/studying technologies compared to actually implementing them.
+\\
 
-Here are some graphs showing the growth trend among various package managers:
+Here are some graphs showing the growth trend among various package managers \cite{module_counts}:
 \begin{figure}[H] 
 	\center{\includegraphics[width=0.75\linewidth]{img/module_counts_year}}
 	\caption{Module Count Growth in the last Year }
@@ -421,23 +413,110 @@ Server Providers that use the git \cite{git} technology to allow users to manage
 Examples of this our companies like Heroku.
 This makes it very easy to maintain, manage and utilize a RAD type of development.
 
-
-
 \section{Agility}
 % Agile / incremental and iterative approach to development. Planning, meetings.
+We wanted to be flexible in our approach since most of the aspects involved from meetings, planning, project development and the technologies were new to use. Agile suited us well.
+
 \subsection{Agile}
+We decided that we wanted to go through this project in a modern way so we looked into the \textit{"Manifesto for Agile Software Development"} \cite{manifesto_for_agile}:
+\begin{figure}[H] 
+	\center{\includegraphics[width=1.0\linewidth]{img/manifesto_for_agile}}
+	\caption{Manifesto for Agile Software Development}
+	\label{fig:speciation}
+\end{figure}
+With these ideas behind us (and some more taken from SCRUM and RAD) we worked to:
+\begin{itemize}
+	\item Have regular meetings with our client
+	\item Constantly take feedback on board
+	\item Change designs throughout development where possible
+	\item Break down tasks into their constituents and work through them
+\end{itemize}
 
 \subsection{Meetings}
+Initially we had a weekly meeting with our client where sometimes others would be present (one or two other clients or our supervisor). 
+We also held a weekly meeting with our supervisor.
+As time went on we had meetings every two or three weeks (depending on the workload and what needed to be done), in between our meetings we kept in constant communication making sure that everyone knew there tasks.
+
+\pagebreak
+\textbf{Here are the minutes from two of our meetings this year:}
+\begin{figure}[H] 
+	\center{\includegraphics[width=1.0\linewidth]{img/2016_Meeting_1_Minutes}}
+	\caption{2016 Meeting \#1 - Minutes}
+	\label{fig:speciation}
+\end{figure}
+\begin{figure}[H] 
+	\center{\includegraphics[width=1.0\linewidth]{img/2016_Meeting_2_Minutes}}
+	\caption{2016 Meeting \#2 - Minutes}
+	\label{fig:speciation}
+\end{figure}
 
 \subsection{Team Work}
+We divided up all the work initially and along the way.
+We used the GitHub issue tracker to flag bugs and highlight different improvements that could be made to the project.
+We met up a few times a week to go through the project and make sure everything was syncing.
+We learned much about working in teams from this project.
 
 \section{Testing}
 %What about validation and testing? Junit or some other framework.
-\subsection{Test Server}
+Since there are so many different aspects to this project it was hard to bring in a testing framework.
+I used created some test cases in Java with the Selenium WebDriver library in order to go through each tab of the web app and push server.
+This helped us verify everything was working fine, we just needed to sit back and watch the test cases pass.
+\\
+For the mobile app I tried out Karma unit tests in conjunction with the Jasmine library.
+We had an okay experience with this but we feel it is so cumbersome to set up that it may just be better to do user testing.
+\\
+We downloaded the mobile app on Android and iOS, and tested all the features out in various locations.
+We did user testing by getting people from our year and the year below in software development and also some students who are not in the IT field to test all the features out and tell us the best and worst things they encountered within the application. 
+This helped us improve the applications user experience, design and to kink our any bugs.
+\\
+We went through the web application with our client many times and updated it to make it easily usable for them.
 
+\subsection{Test Server}
+The test server contained all the routes necessary to mock the real server.
+Here are the routes used:
+	    \begin{table}[H]
+	    	\centering
+	    	\begin{tabular}{p{8cm}p{5cm}}
+	    		\toprule \\
+	    		\textbf{Route} & \textbf{Use} \\ \hline
+	    		/ & Homepage \\  \hline
+	    		/createuser/[data] & New User \\ \hline
+	    		/verifyuser/[data] & Login \\ \hline
+	    		/getfood & Get Menu \\ \hline
+	    		/userhistory/[data] & Get User History \\ \hline
+	    		/buyfood/[data] & Order Food \\ \hline
+	    		/changeuserpw/[data] & Change Password \\ \hline
+	    		/workingtime/[data] & Opening Times \\ \hline
+	    		/topup/[data] & Topup Account\\ \hline
+	    		/recoveruserpw/[data] & Reset Password \\ \hline
+	    		\bottomrule
+	    	\end{tabular}
+	    	\caption{Routes table}
+	    	\label{table:RoutesTable}
+	    \end{table}
+This is actually a good place to get a simple overview of how the real server works.
+This is our interface.
+\\
+In order to switch between the test and real server we only need to change one line of code.
+This file is located in:
+\\
+www/app/app.js
+\begin{minted}[breaklines, mathescape, linenos, numbersep=5pt, frame=single, numbersep=5pt, xleftmargin=0pt]{css}
+.constant('SERVER', {
+  // test server
+  // url: 'https://catering-test-server.herokuapp.com/',
+  	
+  // real server
+  url: 'http://canteenapplication.vmarisevs.me/mobileapplication/',
+});
+\end{minted}
 \section{Source Control}
 %If team based, did you use GitHub during the development process.
+We made sure to use source control throughout our project, utilizing branches and constant commits.
+Between the mobile app and web app alone we have a total of \textbf{210} commits.
+
 \subsection{GitHub}
+We chose to use GitHub as our source control repository vendor as it is tried and trusted, we are used to it, we use it currently in college and it hosts some of the largest projects on the web. Also the issue tracker, wiki, web site builder and various other features are compelling.
 
 \section{Choice}
 %Selection criteria for algorithms, languages, platforms and technologies.
@@ -448,8 +527,31 @@ Here we will discuss why we chose PHP, SQL, JavaScript and JSON as our core tech
 \subsection{SQL}
 % TODO: Vlad: Why SQL?
 \subsection{JavaScript}
+JavaScript is the language that the Ionic and Angular core development team use for creating applications.
+You can write any JavaScript from any framework in other languages like CoffeeScript or TypeScript.
+\\
+
+These follow stricter rules and allow JavaScript to be strongly typed.
+This gives you auto-completion amongst other things.
+It nearly a bit more like you're writing Java with these languages.
+These languages are transpiled into JavaScript (as opposed to compiled).
+\\
+\textit{*The difference between transpiling and compiling is that transpiling compiles to the same abstraction level}.
+\\
+
+TypeScript and JavaScript are at the same abstraction level.
+Transpiling is a form of compiling (a subset).
+Transpilers are gaining popularity and often take the direction of up and coming standards.
+If you learn Microsoft s TypeScript you are learning much of the new JavaScript standards to come.
+\\
+\textit{*TypeScript is being incorporated into Angular2.}
+\\
+
+If I were to do this project again in the future I would consider using TypeScript instead of JavaScript.
 
 \subsection{JSON}
+We chose to use JSON for passing messages between the mobile and web applications due to the fact that it is so lightweight and easy to create and parse.
+Since the Ionic application is written with JavaScript it stores all it's data in JSON format by default.
 
 % TODO: Vlad: Add something in relation to the web server
 
@@ -600,15 +702,7 @@ I used SASS (Sassy CSS), this lets you use CSS in a programmatic way (using vari
 \\
 
 Here is a piece of SASS for the Ionic colours:
-\begin{minted}[%
-breaklines,
-mathescape,
-linenos,
-numbersep=5pt,
-frame=single,
-numbersep=5pt,
-xleftmargin=0pt,
-]{css}
+\begin{minted}[breaklines, mathescape, linenos, numbersep=5pt, frame=single, numbersep=5pt, xleftmargin=0pt]{css}
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
 $positive:                        #5475aa !default; 
