@@ -168,9 +168,17 @@ Below we will:
 \end{itemize}
 
 \section{System Administration and Management Web Application}
-I decided to do this because of that, etc
-PHP is great but maybe a Java web server would have being better, easier to modify, I already know Java.
-SQL is hard to change over time, maybe implementing a NoSQL database would have been good...
+% I decided to do this because of that, etc
+%% PHP is great but maybe a Java web server would have being better, easier to modify, I already know Java.
+%% SQL is hard to change over time, maybe implementing a NoSQL database would have been good...
+
+The PHP is widely used as a popular server side language and great number of open source software and company’s web sites use PHP since it can enable high software productivity\cite{PHP_Usage}.
+
+IBM Research group from Tokyo Research Laboratory reports that PHP as a web service engine performs competitively with Axis2 Java for web services involving small payloads, and greatly outperforms it for larger payloads by 5-17 times. As the authors expected, Axis2 C performs best, but the experimental results demonstrate that PHP performance is closer to Axis2 C with larger payloads\cite{Web_Service_Engines_in_PHP_Java_C}.
+
+In order to develop a secure web application, Zend Framework 2 was chosen as base of this project. From the various types of PHP frameworks it was designed by Zend Technologies Ltd, who also developed PHP license. Appendix \ref{appendix:LiteratureReviewZF} describes cross-site scripting attacks and how to prevent them using Zend Framework.
+%% to be continue 
+
 
 \section{Mobile App}
 The mobile application is created using bleeding edge technologies such as the Ionic framework, which utilizes the AngularMVW framework, which in turn is programmed using JavaScript. HTML and CSS were also heavily utilized.
@@ -1184,7 +1192,7 @@ pdfMake.createPdf(docDefinition).download('optionalName.pdf');
 
 
 \chapter{System Evaluation}	% n-m pages
-\section{Web App}
+\section{Management Website}
 	\subsection{PDF make vs DOM PDF}
 		One of most commonly used modules for generating \textit{pdf} is DOM PDF for Zend Framework 2. This module let you generate file based on html type content. It has advantages such as easy to install using \textit{composer}, interprets html page as structure of pdf file, loading pictures from remote sources. But it also has a big disadvantage to generate large file it will require more PHP hosting memory. 
 		At the start all reports were planned to be made using DOM PDF module, but after testing, it show that there is not enough memory available for PHP services. 
