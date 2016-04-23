@@ -665,7 +665,7 @@ Ionic has a huge community, extensive tooling for the majority of tasks needed a
 
 Once I had decided to take the Ionic route it meant that I was delving into the world of web development, as Ionic uses AngularJS, which is used with JavaScript, HTML, CSS and all the web development tools and work-flows.
 
-\subsubsection{HTML/CSS}
+\subsection{HTML/CSS}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/html-css.jpg}
 \end{wrapfigure} 
@@ -706,7 +706,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 You can also see that I am importing other style sheets.
 
 
-\subsubsection{JavaScript}
+\subsection{JavaScript}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/JS.png}
 \end{wrapfigure} 
@@ -720,7 +720,7 @@ This is useful as you don't need to code in concurrency, it is an inherent featu
 \\
 I wrote a literature review on using JavaScript for full stack development \cite{js_advantages_full_stack}, this touches on promises, the event based nature, and why JavaScript is so popular.
 
-\subsubsection{AngularJS}
+\subsection{AngularJS}
 \begin{wrapfigure}{r}{2.5cm}
 	\includegraphics[width=3cm]{img/mobile-app/logos/angular.jpg}
 	\centering
@@ -849,19 +849,27 @@ In order to use Heroku you:
 
 \textbf{Here are the commands to create a new server and push to it} (once pushed it goes live instantly):
 \begin{minted}[breaklines, mathescape, linenos, numbersep=5pt, frame=single, numbersep=5pt, xleftmargin=0pt]{bash}
-$ heroku login
-$ git init
-$ heroku create
-$ git add .
-$ git commit -a
-$ git push heroku master
-$ heroku open
+> heroku login
+> git init
+> heroku create
+> git add .
+> git commit -a
+> git push heroku master
+> heroku open
 \end{minted}
 
 \textbf{Here is the Procfile} (this is the Heroku config file for the project, here we give the server the command to start our project):
 \begin{minted}[breaklines, mathescape, linenos, numbersep=5pt, frame=single, numbersep=5pt, xleftmargin=0pt]{yaml}
 web: node server.js
 \end{minted}
+
+\section{Stores}
+We decided to release the application on the iOS and Android stores.
+\\
+
+\href{https://itunes.apple.com/ie/app/gmit-catering/id1054850061?mt=8}{iOS App Store Link}.
+
+\href{https://play.google.com/store/apps/details?id=ie.gmit.catering}{Android App Store Link.}
 
 \subsection{iOS Store}
 \begin{wrapfigure}{r}{2.5cm}
@@ -919,86 +927,464 @@ The reason we didn't create a Windows Phone version is that firstly it is not su
 \\
 Ionic2 will be supporting Windows Universal Platform applications, so in the future this application could be migrated to the Windows Platform quite easily.
 
-\subsection{Tools}
-\subsubsection{Yeoman}
+\section{JS Tools}
+\subsection{Yeoman}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/yeoman.png}
 \end{wrapfigure}
-\cite{jasmine}
+\cite{yeoman}
+We used Yeoman to scaffold out the push web application.  
+There were some dependency issues, which are not uncommon with NPM.
+Once these were solved we used Yeoman's Angular Generator \cite{angular_generator} to scaffold out a skeleton.
+\\
+Since there are so many frameworks, plug-ins and libraries in the web development community, a tool like this is needed to bring some structure to the chaos of this heterogeneity. It is analogous to a command line wizard.
+ \\
+ Here is the output when using the Angular Generator:
+\begin{minted}[breaklines, mathescape, linenos, numbersep=5pt, frame=single, numbersep=5pt, xleftmargin=0pt]{bash}
+Ronan:~/development/misc$ yo angular
+
+_-----_
+|       |    .------------------------------------------.
+|--(o)--|    | Update available: 1.7.0 (current: 1.6.0) |
+`---------´   |     Run npm install -g yo to update.     |
+( _´U`_ )    '------------------------------------------'
+/___A___\
+|  ~  |
+__'.___.'__
+´   `  |° ´ Y `
+
+
+_-----_
+|       |    .--------------------------.
+|--(o)--|    |    Welcome to Yeoman,    |
+`---------´   |   ladies and gentlemen!  |
+( _´U`_ )    '--------------------------'
+/___A___\
+|  ~  |
+__'.___.'__
+´   `  |° ´ Y `
+
+Out of the box I include Bootstrap and some AngularJS recommended modules.
+
+? Would you like to use Gulp (experimental) instead of Grunt? No
+? Would you like to use Sass (with Compass)? No
+? Would you like to include Bootstrap? Yes
+? Which modules would you like to include? angular-animate.js, angular-cookies.js, angular-resource.js, angular-route.js, angular-sanitize.js, angular-touch.js
+create app/styles/main.css
+create app/index.html
+create bower.json
+create .bowerrc
+create package.json
+create Gruntfile.js
+create README.md
+invoke   angular:common:/usr/local/lib/node_modules/generator-angular/app/index.js
+create     .editorconfig
+...
+
+I'm all done. Running bower install & npm install for you to install the required dependencies. If this fails, try running the command yourself.
+ \end{minted}
+As you can see straight away, we are not on the current version.
+The \textit{create} commands are the files that are created, you can kind of get an idea of the structure from that.
+\\
+
+Once \textit{bower install \& npm install} we ran we were met with this:
+\begin{minted}{bash}
+misc@ /Users/Ronan/development/misc
+UNMET PEER DEPENDENCY grunt@>=0.4.x
+|-> grunt-karma@0.12.2
+    |->lodash@3.10.1
+|-> UNMET PEER DEPENDENCY jasmine-core@*
+|-> UNMET PEER DEPENDENCY karma@^0.13.0 || >= 0.14.0-rc.0
+|->  karma-jasmine@0.3.8
+|->  karma-phantomjs-launcher@1.0.0
+    |->  lodash@4.11.1
+|-> UNMET PEER DEPENDENCY phantomjs-prebuilt@>=1.9
+ \end{minted}
+These kinds of errors are common and usually the answer is found in the comment thread of the projects GitHub Issue Tracker.
+
+This can take up to five minutes to complete installing.
+
+Once installed we have a project that has grunt, jasmine, karma, bower and an angular application ready to go!
+This would usually take much longer to set-up.
+We went out and learned each of these technologies individually before using this generator, otherwise you don't understand what's happening.
 
 \subsubsection{Grunt}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/grunt.png}
 \end{wrapfigure} 
-\cite{jasmine}
+Grunt \cite{grunt} is a task runner like \textit{Ant} or \textit{Gulp}.
+It runs various tasks for you.
+It is needed when you have multiple steps in your project.
+Below are a few parts to the \textit{GruntFile.js} from the push web app.
+\\
 
-\subsubsection{Jasmine}
+\textbf{Registering some tasks:}
+\begin{minted}{bash}
+  grunt.registerTask('test', [
+  'clean:server',
+  'wiredep',
+  'concurrent:test',
+  'postcss',
+  ]);
+  
+  grunt.registerTask('default', [
+  'newer:jshint',
+  'newer:jscs',
+  'test',
+  'build'
+  ]);
+\end{minted}
+  
+\textbf{Here is one of those tasks:}
+  \begin{minted}{bash}
+// Empties folders to start fresh
+clean: {
+    dist: {
+        files: [{
+            dot: true,
+                src: [
+                    '.tmp',
+                    '<%= yeoman.dist %>/{,*/}*',
+                    '!<%= yeoman.dist %>/.git{,*/}*']
+                }]
+        },
+    server: '.tmp'
+},
+  \end{minted}
+  
+ \textbf{To run grunt you type one of the below commands:}
+  \begin{minted}{bash}
+> grunt
+> grunt build
+> grunt test
+  \end{minted}
+  Running \textit{grunt} is the same as tunning \textit{grunt default}.
+ 
+ \subsection{Gulp}
+ \begin{wrapfigure}{r}{2.5cm}
+ 	\includegraphics[width=3cm]{img/mobile-app/logos/gulp.png}
+ \end{wrapfigure} 
+As said before, Gulp \cite{gulp} is like Grunt.
+The main difference is that Gulp is programmatic rather then defined.
+\\
+We are using it for SASS \cite{sass} here.
+SASS is framework that allows one to write CSS in a programmatic way.
+\\
+\textbf{Example from the Ionic App (\textit{gulpfile.js}):}
+\begin{minted}[breaklines]{js}
+// imports
+
+var paths = {
+sass: ['./scss/**/*.scss']
+};
+
+gulp.task('default', ['sass']);
+
+gulp.task('sass', function(done) {
+gulp.src('./scss/ionic.app.scss')
+.pipe(sass())
+.pipe(gulp.dest('./www/css/'))
+.pipe(minifyCss({
+keepSpecialComments: 0
+}))
+.pipe(rename({ extname: '.min.css' }))
+.pipe(gulp.dest('./www/css/'))
+.on('end', done);
+});
+
+gulp.task('watch', function() {
+gulp.watch(paths.sass, ['sass']);
+});
+
+gulp.task('install', ['git-check'], function() {
+return bower.commands.install()
+.on('log', function(data) {
+gutil.log('bower', gutil.colors.cyan(data.id), data.message);
+});
+});
+
+// error stuff
+done();
+});
+\end{minted}
+
+\subsection{Jasmine}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/jasmine.png}
 \end{wrapfigure} 
 \cite{jasmine}
+Jasmine is just a bunch of functions that test your code.
+You give it an input or action and state what the result should be.
+Much like \textit{JUnit}, Jasmine is unit testing.
+\\
 
-\subsubsection{Karma}
+It is a behaviour driven development framework for testing JavaScript code, and is doesn't rely on any other JavaScript frameworks.
+\\ 
+
+\textbf{Here is a sample test for the home controller on the push web app:}
+  \begin{minted}{js}
+'use strict';
+
+describe('Controller: HomeCtrl', function () {
+
+// load the controller's module
+beforeEach(module('gmitcat'));
+
+var HomeCtrl,
+scope;
+
+// Initialize the controller and a mock scope
+beforeEach(inject(function ($controller, $rootScope) {
+    scope = $rootScope.$new();
+    HomeCtrl = $controller('HomeCtrl', {
+    $scope: scope
+    // place here mocked dependencies
+});
+}));
+
+it('should attach a list of awesomeThings to the scope', function () {
+    expect(HomeCtrl.awesomeThings.length).toBe(3);
+});
+});
+\end{minted}
+
+We didn't incorporate many of these tests, as we did extensive user testing and only rely looked into this near the end of the project, but in future projects I would implement this from the get go.
+
+\subsection{Karma}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/karma.png}
 \end{wrapfigure} 
+\cite{karma}
+Karma is test-framework agnostic, what is does is spawn a web server that executes test code against source code for each of the browsers connected. You can plug any compatible testing-framework into this. Examples are: Jasmine, Mocha, and QUnit.
 
+Once Karma is installed (via NPM) you just need to setup the config file and choose a testing framework.
+\\
 
-\subsubsection{Bower}
+\textbf{Here is part of our Karma Config file for the Push Web App}:
+\begin{minted}
+[breaklines, mathescape,, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]
+{bash}
+module.exports = function(config) {
+config.set({
+
+// list of files / patterns to load in the browser
+files: [
+// bower:js
+'app/scripts/**/*.js', 'test/mock/**/*.js', 'test/spec/**/*.js'
+],
+port: 8080,
+
+// - Chrome, ChromeCanary, Firefox, Opera, Safari (only Mac), PhantomJS, IE (only Windows)
+browsers: [
+'PhantomJS'
+],
+
+plugins: [
+'karma-phantomjs-launcher', 'karma-jasmine'
+],
+singleRun: false,
+colors: true,
+
+// level of logging
+// possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
+logLevel: config.LOG_INFO,
+});
+};
+\end{minted}
+
+\subsection{Bower}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/bower.png}
 \end{wrapfigure} 
+Bower \cite{bower} is a package manager like \textit{Maven} or \textit{NPM}.
+It is often used in conjunction with NPM.
+The main difference is the way it loads packages into an application.
+\\
+Bower loads items via dependency injection in the \textit{app.js file}.
+We can see below the angular-md5 package being loaded in along with some default.
+\begin{minted}[breaklines]{js}
+angular
+.module('canteen', ['ionic', 'ionic.service.core', 'canteen.controllers', 'canteen.services', 'ngCordova', 'ngMessages', 'angular-md5']);
+\end{minted}
 
+Below is the list of dependencies for the project, these get install when the command: \textit{bower.json} is run.
+\\
 
-\subsubsection{NPM}
+\textbf{\textit{bower.json file} from the Ionic app:}
+\begin{minted}{js}
+{
+    "name": "GmitCatering",
+    "private": "true",
+    "devDependencies": {
+        "ionic": "driftyco/ionic-bower#1.1.0",
+        "platform.js": "platform#~1.3.0",
+        "ionic-platform-web-client": "~0.2.1"
+    },
+    "dependencies": {
+        "angular-md5": "~0.1.10"
+    }
+}
+\end{minted}
+
+\subsection{NPM}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/npm.png}
 \end{wrapfigure} 
+NPM \cite{npm} is the main package manager for nearly all JavaScript projects, including Ionic.
+It is similar to Bower.
 
+Below is the list of dependencies for the Ionic application:
+\begin{minted}{js}
+{
+"name": "gmitcatering",
+"version": "1.0.0",
+"description": "GmitCatering: Purchase food with ease",
+"dependencies": {
+"cordova": "^5.3.3",
+"gulp": "^3.5.6",
+"gulp-concat": "^2.2.0",
+"gulp-minify-css": "^0.3.0",
+"gulp-rename": "^1.2.0",
+"gulp-sass": "^2.0.4"
+},
+"devDependencies": {
+"bower": "^1.3.3",
+"gulp-util": "^2.2.14",
+"shelljs": "^0.3.0"
+},
+"cordovaPlugins": [
+"cordova-plugin-whitelist@1.0.0",
+"phonegap-plugin-push"
+],
+"cordovaPlatforms": [
+"android",
+"ios"
+]
+}
+\end{minted}
 
-\subsubsection{BASH}
+Here we are loading some NPM modules into the gulp file for use:
+\begin{minted}{js}
+var gulp = require('gulp');
+var gutil = require('gulp-util');
+var bower = require('bower');
+var concat = require('gulp-concat');
+var sass = require('gulp-sass');
+var minifyCss = require('gulp-minify-css');
+var rename = require('gulp-rename');
+var sh = require('shelljs');
+\end{minted}
+
+\subsection{BASH}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/bash.jpg}
 \end{wrapfigure} 
+As you can see throughout the document so far, we have used the terminal for many tasks, and even created some scripts.
+BASH \cite{bash} is invaluable to the development work-flow, being able to group various commands into a file and just run the file is a great way to encapsulate processes. 
 
-\subsection{Alternatives}
+\section{Web App Alternatives}
 % alternatives? JQueryPhone, PhoneGap, Cordova, Xamarin
-\subsubsection{Cordova}
+\subsection{Cordova}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/cordova.jpg}
 \end{wrapfigure} 
+Cordova \cite{cordova} is an amazing project which gives us the ability to develop a mobile application from a single web view.
+Cordova allows us to access hardware on the device that would otherwise be very tricky.
+\\
 
-\subsubsection{PhoneGap}
+They support:
+\begin{itemize}
+\item iOS
+\item Android
+\item Windows Phone
+\item BlackBerry
+\item UbuntuPhone
+\item FirefoxPhone
+\item LGwebOS
+\item FireOS
+\end{itemize}
+
+Ionic is based on Cordova.
+
+\subsection{PhoneGap}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/PhoneGap.png}
 \end{wrapfigure} 
+Adobe own PhoneGap \cite{phonegap}, when they purchased the Cordova project, some aspects had to be kept open source.
+Adobe has created some great services and proprietary APIs for Cordova.
 
-\subsubsection{JQueryMobile}
+\subsection{JQueryMobile}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/jquery-mobile.png}
 \end{wrapfigure} 
+JQuery \cite{jquery_mobile} Mobile helps you create JavaScript interfaces for mobile apps and mobile web apps.
+It can be used with PhoneGap or many other frameworks.
+Check \href{http://jquerymobile.com/resources/}{this website} out to view all available frameworks.
+\\
+I probably would of went for this library mixed with Cordova if Ionic was not available.
+Although it is way behind in many aspects.
 
-\subsubsection{Xamarin}
+\subsection{Xamarin}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/xamarin.png}
 \end{wrapfigure} 
+\cite{xamarin}
+Xamarin is a great choice for developers who want to create cross platform applications in C#, or for those who really don't like the JavaScript world.
+You code your Windows Universal Platform application up in C# and Xamarin will port your \textbf{Core Logic} to Android and iOS.
+You still have to write the View layer and Native API layers yourself though.
+\\
 
-  \section{Push Server}
+We found after talking to the community on the forums that it was quite buggy and there wasn't much support in some areas.
+For instance the ported code is usually very different then if you were to create it yourself in Android or iOS so it's very hard to ask for help as all of your code will be completely custom.
+
+  \section{Push Web Application}
+The Push Web App uses AngularJS, NodeJS, ExpressJS, Cloudant and Heroku.
+We chose to use these technologies as we needed to quickly create a server to facilitate push notifications.
+We did not realise that we would need to store a list of device tokens, and it was too late to update the SQL Schema.
 
 \subsection{CouchDB/Cloudant}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/cloudant.jpg}
 \end{wrapfigure} 
+IBM's cloudant \cite{cloudant} NoSQL database solution usese CouchDB \cite{couchdb} as the database of choice.
+It has a fantastic user interface and is a joy to use.
+IBM also guarantee high levels of performance and very low downtime (SLA).
+\\
+
+The other alternative I thought of using was Google's Firebase.
+I think these are both very good NoSLQL DB as a service solutions.
+Another one that has been around for awhile is Mlab (MongoDB as a service).
 
 \subsection{NodeJS}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/nodejs.png}
 \end{wrapfigure} 
+NodeJS \cite{nodejs} which I talk about in detail in my literature review \cite{js_advantages_full_stack} in detail, has taken the web by storm the past couple of years. It has allowed developers to bring JavaScript from the client side to the server side using Google's JavaScript interpreter (V8 Engine), this V8 Engine heavily optimizes the JS code and uses JIT compilation to give near native performance, this coupled with the event based nature (which removes the need for threads) makes it a strong choice for server side development.
 
 \subsection{ExpressJS}
 \begin{wrapfigure}{r}{2.5cm}
 \includegraphics[width=3cm]{img/mobile-app/logos/express.png}
 \end{wrapfigure} 
+ExpressJS \cite{expressjs} is a web development framework based on the NodeJS environment, it abstracts many common tasks into functions, like setting up a web server or HTTP RESTful routes.
+\\
+Here is an example of a simple ExpressJS HTTP Server with RESTful home route:
+\begin{minted}{js}
+var express = require('express');
+var app = express();
+
+app.set('port', (process.env.PORT || 5000));
+
+// home page
+app.get('/', function(req, res){
+    var result = {"message": "Welcome to the gmit catering api"};
+    res.contentType('application/json');
+    res.send(JSON.stringify(result));
+});
+
+app.listen(app.get('port'), function() {
+    console.log('Node app is running on port', app.get('port'));
+});
+\end{minted}
 
   %\pagebreak
   \section{GitHub}
@@ -1011,7 +1397,7 @@ Ionic2 will be supporting Windows Universal Platform applications, so in the fut
   We also used the \textit{issue tracker} to raise any issues/bugs we noticed on each others projects, or to mention an enhancement that could be incorporated.
   
   \begin{figure}[H] 
-  	\center{\includegraphics[width=0.75\linewidth]{img/issue_tracker}}
+  	\center{\includegraphics[width=1.0\linewidth]{img/issue_tracker}}
   	\caption{Issue Tracker}
   	\label{fig:speciation}
   \end{figure}
@@ -1020,23 +1406,58 @@ Ionic2 will be supporting Windows Universal Platform applications, so in the fut
   We also created an organisation, which acts as an entity.
   We forked all our repositories there and used it as a central hub for the overall project \cite{github_org}.
   \begin{figure}[H] 
-  	\center{\includegraphics[width=0.75\linewidth]{img/github_org}}
+  	\center{\includegraphics[width=1.0\linewidth]{img/github_org}}
   	\caption{GMIT Catering GitHub Org}
   	\label{fig:speciation}
   \end{figure}
   
   %\pagebreak
   \section{JSON REST interface architecture}	% 1 pages
+  \begin{wrapfigure}{r}{2.5cm}
+  	\includegraphics[width=3cm]{img/mobile-app/logos/express.png}
+  \end{wrapfigure} 
+We chose to use a RESTful architecture   ~\cite{JSON_REST_interface} with JSON   \cite{json} because it is very simple and easy to understand and use.
+It''s reliable and has been battle tested with time.
+\\
+Both setting up and querying a RESTful system is trivial.
+
   % TODO: Vlad: 
+  
   \subsection{HTTP Requests}
+  \begin{wrapfigure}{r}{2.5cm}
+  	\includegraphics[width=3cm]{img/mobile-app/logos/express.png}
+  \end{wrapfigure} 
+  \cite{http_methods}
+  In order to query our RESTful system we used HTTP requests.
+  These are very intuitive, they were designed to be common sense and simple to understand.
+  \\
+  Here is a list of HTTP Request Type:
+	    \begin{table}[H]
+	    	\centering
+	    	\begin{tabular}{x{2cm}p{6cm}p{6cm}}
+	    		\toprule \\
+	    		\textbf{Name} & \textbf{Function} & \textbf{Example} \\ \hline
+	    		Get & Gets the data at that URL & /users/Ronan OR /users/ \\ \hline
+	    		Put & Updates the data at that URL & /users/Ronan \\ \hline
+	    		Post & Saves a new user to a URL & /users/ \\ \hline
+	    		Delete & Deletes the data at that URL & /users/Ronan \\ \hline    			    	    		
+	    		\bottomrule
+	    	\end{tabular}
+	    	\caption{HTTP Requests}
+	    	\label{table:HttpRequests}
+	    \end{table}
+    
   % TODO: Vlad: 
   % talk about the HTTP get/post requests used via the interface from the phone and server
   \subsection{Custom API}
+  We created a Custom HTTP RESTful API on our web application.
+  It contains various routes which are discussed in the web app section of the system design and illustrated via angular HTTP code snippets in the mobile app section of the system design below.
+  \\
+  
+  We found this to be very quick and easy to set up and would recommend it to others and we ourself would use it in the future without a doubt.
+  
   % TODO: Vlad: 
   % The web server has a custom API that the mobile app uses
-
-  ~\cite{JSON_REST_interface}
-
 
 \chapter{System Design}	% n-m pages
   \section{Database}
