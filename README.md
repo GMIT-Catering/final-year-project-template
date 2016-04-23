@@ -21,7 +21,7 @@ or
 `% TODO: Vlad: <comment>`  
 
 ### Language:
-The document shall be written in `we` terms rather then `I`.
+The document shall be written in `we` terms rather then `I` where appropriate.
 
 We will write in past tense, as in:  
 "We chose to use this technology because of X, Y and Z."
