@@ -20,3 +20,8 @@ we will add the following comment:
 or  
 `% TODO: Vlad: <comment>`  
 
+### Language:
+The document shall be written in `we` terms rather then `I`.
+
+We will write in past tense, as in:  
+"We chose to use this technology because of X, Y and Z."
