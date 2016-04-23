@@ -23,6 +23,10 @@
 \usepackage{hyperref}
 \usetikzlibrary{mindmap,shadows, shapes, arrows, positioning}
 
+%% appendix libs
+\usepackage[toc,page]{appendix}
+\usepackage{pdfpages}
+
 %% Change these:
 \newcommand{\projecttitle}{Food Ordering System for the GMIT Catering Company}
 \newcommand{\projectauthor}{Ronan Connolly \\[0.2cm] Vladislav Marisevs}
@@ -73,7 +77,12 @@
   \end{titlepage}
   \setcounter{page}{2}
   \tableofcontents
- \input{content.tex}
+
+
+  \input{content.tex}
+  
+  \input{appendix.tex}
+  
   %\bibliographystyle{ieeetr}
    \bibliographystyle{IEEEtran}
    
