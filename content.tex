@@ -1408,8 +1408,11 @@ app.listen(app.get('port'), function() {
   \begin{wrapfigure}{r}{2.5cm}
   	\includegraphics[width=3cm]{img/mobile-app/logos/express.png}
   \end{wrapfigure} 
-  \cite{json}
-  
+We chose to use a RESTful architecture   ~\cite{JSON_REST_interface} with JSON   \cite{json} because it is very simple and easy to understand and use.
+It''s reliable and has been battle tested with time.
+\\
+Both setting up and querying a RESTful system is trivial.
+
   % TODO: Vlad: 
   
   \subsection{HTTP Requests}
@@ -1417,15 +1420,36 @@ app.listen(app.get('port'), function() {
   	\includegraphics[width=3cm]{img/mobile-app/logos/express.png}
   \end{wrapfigure} 
   \cite{http_methods}
-  
+  In order to query our RESTful system we used HTTP requests.
+  These are very intuitive, they were designed to be common sense and simple to understand.
+  \\
+  Here is a list of HTTP Request Type:
+	    \begin{table}[H]
+	    	\centering
+	    	\begin{tabular}{x{2cm}p{6cm}p{6cm}}
+	    		\toprule \\
+	    		\textbf{Name} & \textbf{Function} & \textbf{Example} \\ \hline
+	    		Get & Gets the data at that URL & /users/Ronan OR /users/ \\ \hline
+	    		Put & Updates the data at that URL & /users/Ronan \\ \hline
+	    		Post & Saves a new user to a URL & /users/ \\ \hline
+	    		Delete & Deletes the data at that URL & /users/Ronan \\ \hline    			    	    		
+	    		\bottomrule
+	    	\end{tabular}
+	    	\caption{HTTP Requests}
+	    	\label{table:HttpRequests}
+	    \end{table}
+    
   % TODO: Vlad: 
   % talk about the HTTP get/post requests used via the interface from the phone and server
   \subsection{Custom API}
+  We created a Custom HTTP RESTful API on our web application.
+  It contains various routes which are discussed in the web app section of the system design and illustrated via angular HTTP code snippets in the mobile app section of the system design below.
+  \\
+  
+  We found this to be very quick and easy to set up and would recommend it to others and we ourself would use it in the future without a doubt.
+  
   % TODO: Vlad: 
   % The web server has a custom API that the mobile app uses
-
-  ~\cite{JSON_REST_interface}
-
 
 \chapter{System Design}	% n-m pages
   \section{Database}
