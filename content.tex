@@ -172,10 +172,14 @@ Below we will:
 \end{itemize}
 
 \section{System Administration and Management Web Application}
-% TODO: Vlad: 
-I decided to do this because of that, etc
-PHP is great but maybe a Java web server would have being better, easier to modify, I already know Java.
-SQL is hard to change over time, maybe implementing a NoSQL database would have been good...
+
+The PHP is widely used as a popular server side language and great number of open source software and company’s web sites use PHP since it can enable high software productivity\cite{PHP_Usage}.
+
+IBM Research group from Tokyo Research Laboratory reports that PHP as a web service engine performs competitively with Axis2 Java for web services involving small payloads, and greatly outperforms it for larger payloads by 5-17 times. As the authors expected, Axis2 C performs best, but the experimental results demonstrate that PHP performance is closer to Axis2 C with larger payloads\cite{Web_Service_Engines_in_PHP_Java_C}.
+
+In order to develop a secure web application, Zend Framework 2 was chosen as base of this project. From the various types of PHP frameworks it was designed by Zend Technologies Ltd, who also developed PHP license. Appendix \ref{appendix:LiteratureReviewZF} describes cross-site scripting attacks and how to prevent them using Zend Framework.
+%% to be continue 
+
 
 \section{Mobile App}
 The mobile application is created using bleeding edge technologies such as the Ionic framework, which utilizes the AngularMVW framework, which in turn is programmed using JavaScript. HTML and CSS were also heavily utilized.
@@ -521,9 +525,31 @@ We chose to use GitHub as our source control repository vendor as it is tried an
 We already mentioned in the Context chapter about why we chose Ionic, Zend and Mean stack framework/architectures.
 Here we will discuss why we chose PHP, SQL, JavaScript and JSON as our core technologies.
 \subsection{PHP}
-% TODO: Vlad: Why PHP?
-\subsection{SQL}
-% TODO: Vlad: Why SQL?
+PHP is server side scripting language that is widely used and specially suited for web development it can be embedded into html page.
+
+\begin{minted}{php}
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <title>Example</title>
+   </head>
+   <body>
+	
+      <?php
+         echo "Hi, I'm a PHP script!";
+      ?>
+	
+   </body>
+</html>
+\end{minted}
+
+It also has a wide range of protocols such as LDAP, IMAP, SNMP, NNTP, POP3, HTTP, COM and others, that can be used to talk to other services. PHP also has support for instantiation of Java objects and using them as native PHP objects.
+
+\subsection{RDBMS (SQL)}
+In order to chose between noSQL and RDBMS we thought about is there a reason why we should use SQL? Yes there is. In current project we are not just populating database with information, we also have to query the storage on the monotonic types, such as order date or all valid users. In this case we have large set of structured queries and Relational Database Management System can solve this problem. because one of their advantages is atomic transactions. This mean that if we have to do set of transactions and one of them fail then, all others will be canceled. NoSQL type databases are using eventual consistency that cannot at any time guarantee that at flow of transactions that comes together are all done at current point in time. If you will try to access data while transaction is in process you might receive corrupted data. 
+
+
+
 \subsection{JavaScript}
 JavaScript is the language that the Ionic and Angular core development team use for creating applications.
 You can write any JavaScript from any framework in other languages like CoffeeScript or TypeScript.
@@ -551,8 +577,17 @@ If I were to do this project again in the future I would consider using TypeScri
 We chose to use JSON for passing messages between the mobile and web applications due to the fact that it is so lightweight and easy to create and parse.
 Since the Ionic application is written with JavaScript it stores all it's data in JSON format by default.
 
-% TODO: Vlad: Add something in relation to the web server
-
+PHP has a native function that parses object into JSON format string. In the example below we can see code snippet from Controller that prepares to return response back to user and in the content we are parsing array into JSON using \textit{json\_encode} function.
+\begin{minted}{php}
+<?php
+public function indexAction{
+  ...
+  $response = $this->getResponse();
+  $response->setStatusCode(200);        
+  $response->setContent(json_encode($result_array));        
+  return $response;
+}
+\end{minted}
 \chapter{Technology Review} % 7-10 pages
 % intro to tech review, bla bla bla
 Here we will talk about all the technologies we used.
@@ -585,8 +620,12 @@ Here we will talk about all the technologies we used.
 			QR codes are very popular type of two-dimensional barcode~\cite{QR_code_google}. This module was used for generating QR codes for vouchers. When voucher is printed users can scan this code and top up their balance. This module is overridden  for Zend Framework 2 and it uses Google Developers QR code generation API.~\cite{QR_code_generator}
 			
 			\subsubsection{DOM PDF module}
-			In order to generate \textit{*.pdf} file I have used DOM PDF module for Zend Framework 2. This is most common plugin that let me to solve problems with printing remote image. It is easy to use, because it parses HTML as DOM object and generates pdf file based on that.~\cite{DOM_PDF_module}
+			In order to generate \textit{*.pdf} file we use DOM PDF module for Zend Framework 2. This is most common plugin that let me to solve problems with printing remote image. It is easy to use, because it parses HTML as DOM object and generates pdf file based on that.~\cite{DOM_PDF_module}
 
+			\subsubsection{PDF make}
+			In order to generate a large pdf file and move the heavy bit from hosting server, we are using JavaScript module that structures the information and generates the file.
+			\cite{PDF_Make_module}
+			
     \subsection{MySQL}
 %------------------------------------------
 \begin{wrapfigure}{r}{2.5cm}
@@ -622,7 +661,10 @@ As you can see, require takes a key value pairs where key maps to package names 
 \end{minted}
 
     \subsection{WAMP Server}
-
+	WampServer is a Windows web development environment. It allows you to create web applications with Apache2, PHP and a MySQL database. Alongside, PhpMyAdmin allows you to manage easily your databases\cite{WAMPserver}. 
+	
+	%This software bundle allow you to setup any type of PHP services
+	
     \subsection{Server Grove Hosting}
 There is not so many hosting companies that supports Model View Controller structured \textbf{\textit{php}} websites, but the good old days when we were querying \textit{*.php} files are gone. This type of structure hides the extension and it will confuse the attacker on what sort of platform it was written.
 
@@ -1408,11 +1450,9 @@ app.listen(app.get('port'), function() {
   	\includegraphics[width=3cm]{img/mobile-app/logos/express.png}
   \end{wrapfigure} 
 We chose to use a RESTful architecture   ~\cite{JSON_REST_interface} with JSON   \cite{json} because it is very simple and easy to understand and use.
-It''s reliable and has been battle tested with time.
+It's reliable and has been battle tested with time.
 \\
 Both setting up and querying a RESTful system is trivial.
-
-  % TODO: Vlad: 
   
   \subsection{HTTP Requests}
   \begin{wrapfigure}{r}{2.5cm}
@@ -1438,17 +1478,17 @@ Both setting up and querying a RESTful system is trivial.
 	    	\label{table:HttpRequests}
 	    \end{table}
     
-  % TODO: Vlad: 
   % talk about the HTTP get/post requests used via the interface from the phone and server
   \subsection{Custom API}
-  We created a Custom HTTP RESTful API on our web application.
-  It contains various routes which are discussed in the web app section of the system design and illustrated via angular HTTP code snippets in the mobile app section of the system design below.
-  \\
-  
-  We found this to be very quick and easy to set up and would recommend it to others and we ourself would use it in the future without a doubt.
-  
-  % TODO: Vlad: 
-  % The web server has a custom API that the mobile app uses
+We created a Custom HTTP RESTful API on our web application.
+It contains various routes which are discussed in the web app section of the system design and illustrated via angular HTTP code snippets in the mobile app section of the system design below.
+\\
+
+We found this to be very quick and easy to set up and would recommend it to others and we ourself would use it in the future without a doubt.
+\\
+
+The web server has a custom API that the mobile app uses
+We will go into it some more below in the System Design section. 
 
 \chapter{System Design}	% n-m pages
   \section{Database}
@@ -1960,20 +2000,19 @@ pdfMake.createPdf(docDefinition).download('optionalName.pdf');
 		\end{figure}
 		
 	\subsection{Ionic routes \& functions}
-		\subsubsection{Authenticate customer}
-		\subsubsection{Recover customers password}
-		\subsubsection{Change customers password}
-		\subsubsection{Sign Up new customer}
-		\subsubsection{Top Up customer balance}
-		\subsubsection{Approve customer's order and purchase}
-		\subsubsection{Show customers history}
-		\subsubsection{Show available food}
-	
+		In order to establish interconnection between Ionic and Zend Framework we are using JSON interface. To secure the routes that available for mobile application we added special paths on which API would response. When application queries the \textit{http://.../getfood/} it will return JSON type string with all food available. In order to deal with customers we have specialized roots for them, for example \textit{http://.../userhistory[/:customerID][/:customerPW]}. Using this path RDBMS will return complete user order history in JSON format. Note that the password is hashed on the Ionic side and passed just a hash code and user id. This sort of combination would be quite difficult to guess. We also have more routes that are designed using similar principle:
+		\begin{itemize}
+			\item *Authenticate customer
+			\item *Recover customers password
+			\item *Sign Up new customer
+			\item *Top Up customer balance
+			\item *Approve customer's order and purchase
+			\item *Show customers history
+			\item *Show available food
+		\end{itemize}
 	
 
-\subsection{PDF make}
 
-~\cite{PDF_Make_module}
 
 \pagebreak
   \section{Mobile App}
@@ -2423,7 +2462,6 @@ The actual development happens within the \textbf{www} folder (www because we ar
 
 \section{HTTP RESTful Route Requests}
 % go through all the HTTP routes, with code snippets
-% TODO: Ronan: code snippets of all HTTP Requests from Ionic app and how we saved them.
 A listing of all the routes, including request and response data.
 The request data is any data that we give (either in the URL via ':' or in the body of the HTTP request) to the server.
 The response data is data received from the server in response to our HTTP request (in JSON format or else error 404).
@@ -2628,12 +2666,16 @@ recoveruserpw/305490/vmarisevs@gmail.com
 \end{minted}
 
 \chapter{System Evaluation}	% n-m pages
-\section{Web App}
-% TODO: Vlad: Would you have used Java Web server instead of PHP, or NoSQL instead of SQL, etc. Check out my headings in this section
-
+\section{Management Website}
 	\subsection{PDF make vs DOM PDF}
-	% TODO: Vlad: 
-		why???
+		One of most commonly used modules for generating \textit{pdf} is DOM PDF for Zend Framework 2. This module let you generate file based on html type content. It has advantages such as easy to install using \textit{composer}, interprets html page as structure of pdf file, loading pictures from remote sources. But it also has a big disadvantage to generate large file it will require more PHP hosting memory. 
+		At the start all reports were planned to be made using DOM PDF module, but after testing, it show that there is not enough memory available for PHP services. 
+		
+		After doing some research on this problem, best solution was to increase RAM memory available for PHP service. On the local machine in the WAMP server you have to just change the \textit{memory\_limit} in the \textit{\textbf{php.ini}} file. That is a quick fix of this problem, but when it will come to upload this web application into real hosting, you will have same issue, because for increasing the  performance of your service you have to pay more money.
+		
+		To solve this problem and keep minimal required service performance, we decided to move pdf generation module from server side to client side. In this case website returns whole data that user required and it generates a report on the client computer. The idea was to use JavaScript that is interpreted by browser to create a pdf file \cite{PDF_Make_module}.
+		
+		Current web application uses both modules, domPDF is used for creating new vouchers. It generates maximum one page with 8 vouchers on it. They have specific margins for special paper and remotely created QR code to let users simply scan the code and top up their account balance. pdfMake can not be used for loading remote images, they have to be on the same origin. But when it comes to generate large list of invoices we are using a pdfMAKE that will send out the data to users computer and using JavaScript generates a pdf report that can be printed or saved.
 	
 \section{Mobile App}
 \subsection{Chosen tech, why and how?}
