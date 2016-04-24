@@ -172,7 +172,6 @@ Below we will:
 \end{itemize}
 
 \section{System Administration and Management Web Application}
-% TODO: Vlad: 
 
 The PHP is widely used as a popular server side language and great number of open source software and company’s web sites use PHP since it can enable high software productivity\cite{PHP_Usage}.
 
@@ -526,9 +525,31 @@ We chose to use GitHub as our source control repository vendor as it is tried an
 We already mentioned in the Context chapter about why we chose Ionic, Zend and Mean stack framework/architectures.
 Here we will discuss why we chose PHP, SQL, JavaScript and JSON as our core technologies.
 \subsection{PHP}
-% TODO: Vlad: Why PHP?
-\subsection{SQL}
-% TODO: Vlad: Why SQL?
+PHP is server side scripting language that is widely used and specially suited for web development it can be embedded into html page.
+
+\begin{minted}{php}
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <title>Example</title>
+   </head>
+   <body>
+	
+      <?php
+         echo "Hi, I'm a PHP script!";
+      ?>
+	
+   </body>
+</html>
+\end{minted}
+
+It also has a wide range of protocols such as LDAP, IMAP, SNMP, NNTP, POP3, HTTP, COM and others, that can be used to talk to other services. PHP also has support for instantiation of Java objects and using them as native PHP objects.
+
+\subsection{RDBMS (SQL)}
+In order to chose between noSQL and RDBMS we thought about is there a reason why we should use SQL? Yes there is. In current project we are not just populating database with information, we also have to query the storage on the monotonic types, such as order date or all valid users. In this case we have large set of structured queries and Relational Database Management System can solve this problem. because one of their advantages is atomic transactions. This mean that if we have to do set of transactions and one of them fail then, all others will be canceled. NoSQL type databases are using eventual consistency that cannot at any time guarantee that at flow of transactions that comes together are all done at current point in time. If you will try to access data while transaction is in process you might receive corrupted data. 
+
+
+
 \subsection{JavaScript}
 JavaScript is the language that the Ionic and Angular core development team use for creating applications.
 You can write any JavaScript from any framework in other languages like CoffeeScript or TypeScript.
@@ -556,8 +577,17 @@ If I were to do this project again in the future I would consider using TypeScri
 We chose to use JSON for passing messages between the mobile and web applications due to the fact that it is so lightweight and easy to create and parse.
 Since the Ionic application is written with JavaScript it stores all it's data in JSON format by default.
 
-% TODO: Vlad: Add something in relation to the web server
-
+PHP has a native function that parses object into JSON format string. In the example below we can see code snippet from Controller that prepares to return response back to user and in the content we are parsing array into JSON using \textit{json\_encode} function.
+\begin{minted}{php}
+<?php
+public function indexAction{
+  ...
+  $response = $this->getResponse();
+  $response->setStatusCode(200);        
+  $response->setContent(json_encode($result_array));        
+  return $response;
+}
+\end{minted}
 \chapter{Technology Review} % 7-10 pages
 % intro to tech review, bla bla bla
 Here we will talk about all the technologies we used.
@@ -590,8 +620,12 @@ Here we will talk about all the technologies we used.
 			QR codes are very popular type of two-dimensional barcode~\cite{QR_code_google}. This module was used for generating QR codes for vouchers. When voucher is printed users can scan this code and top up their balance. This module is overridden  for Zend Framework 2 and it uses Google Developers QR code generation API.~\cite{QR_code_generator}
 			
 			\subsubsection{DOM PDF module}
-			In order to generate \textit{*.pdf} file I have used DOM PDF module for Zend Framework 2. This is most common plugin that let me to solve problems with printing remote image. It is easy to use, because it parses HTML as DOM object and generates pdf file based on that.~\cite{DOM_PDF_module}
+			In order to generate \textit{*.pdf} file we use DOM PDF module for Zend Framework 2. This is most common plugin that let me to solve problems with printing remote image. It is easy to use, because it parses HTML as DOM object and generates pdf file based on that.~\cite{DOM_PDF_module}
 
+			\subsubsection{PDF make}
+			In order to generate a large pdf file and move the heavy bit from hosting server, we are using JavaScript module that structures the information and generates the file.
+			\cite{PDF_Make_module}
+			
     \subsection{MySQL}
 %------------------------------------------
 \begin{wrapfigure}{r}{2.5cm}
@@ -1417,11 +1451,11 @@ app.listen(app.get('port'), function() {
   	\includegraphics[width=3cm]{img/mobile-app/logos/express.png}
   \end{wrapfigure} 
 We chose to use a RESTful architecture   ~\cite{JSON_REST_interface} with JSON   \cite{json} because it is very simple and easy to understand and use.
-It''s reliable and has been battle tested with time.
+It's reliable and has been battle tested with time.
 \\
 Both setting up and querying a RESTful system is trivial.
 
-  % TODO: Vlad: 
+  %% TODO: Vlad: 
   
   \subsection{HTTP Requests}
   \begin{wrapfigure}{r}{2.5cm}
@@ -1447,7 +1481,6 @@ Both setting up and querying a RESTful system is trivial.
 	    	\label{table:HttpRequests}
 	    \end{table}
     
-  % TODO: Vlad: 
   % talk about the HTTP get/post requests used via the interface from the phone and server
   \subsection{Custom API}
   We created a Custom HTTP RESTful API on our web application.
@@ -1456,7 +1489,8 @@ Both setting up and querying a RESTful system is trivial.
   
   We found this to be very quick and easy to set up and would recommend it to others and we ourself would use it in the future without a doubt.
   
-  % TODO: Vlad: 
+  % TODO: Ronan:
+  % Its a brief description, more advance stuff will be defined in System Design section. 
   % The web server has a custom API that the mobile app uses
 
 \chapter{System Design}	% n-m pages
@@ -1969,20 +2003,19 @@ pdfMake.createPdf(docDefinition).download('optionalName.pdf');
 		\end{figure}
 		
 	\subsection{Ionic routes \& functions}
-		\subsubsection{Authenticate customer}
-		\subsubsection{Recover customers password}
-		\subsubsection{Change customers password}
-		\subsubsection{Sign Up new customer}
-		\subsubsection{Top Up customer balance}
-		\subsubsection{Approve customer's order and purchase}
-		\subsubsection{Show customers history}
-		\subsubsection{Show available food}
-	
+		In order to establish interconnection between Ionic and Zend Framework we are using JSON interface. To secure the routes that available for mobile application we added special paths on which API would response. When application queries the \textit{http://.../getfood/} it will return JSON type string with all food available. In order to deal with customers we have specialized roots for them, for example \textit{http://.../userhistory[/:customerID][/:customerPW]}. Using this path RDBMS will return complete user order history in JSON format. Note that the password is hashed on the Ionic side and passed just a hash code and user id. This sort of combination would be quite difficult to guess. We also have more routes that are designed using similar principle:
+		\begin{itemize}
+			\item *Authenticate customer
+			\item *Recover customers password
+			\item *Sign Up new customer
+			\item *Top Up customer balance
+			\item *Approve customer's order and purchase
+			\item *Show customers history
+			\item *Show available food
+		\end{itemize}
 	
 
-\subsection{PDF make}
 
-~\cite{PDF_Make_module}
 
 \pagebreak
   \section{Mobile App}
