@@ -2680,36 +2680,165 @@ recoveruserpw/305490/vmarisevs@gmail.com
 \section{Mobile App}
 \subsection{Chosen tech, why and how?}
 % why and how we chose what
+We chose to use Ionic because it is the most cutting edge cross platform technology out there at the moment.
+It has the largest and most interactive developer community.
+It seems like the obvious choice, even if JavaScript can be a pain in the neck.
+\\
+
+Angular and the web development tool-set was essential as that's what Ionic requires you to use, no choice here I'm afraid.
+Steep learning curve but lots learned indeed.
+\\
+
+Heroku as a server was a joy to use.
+iOS store was tricky but once learned not so bad.
+Android store was simple and fun to learn.
 
 \subsection{Alternatives tested}
 % what other technologies did we test out?
+Tested out Cordova, PhoneGap, JQueryMobile and Xamarin.
+All were lacking in many areas.
+\\
+
+Again, Ionic was the clear winner.
 
 \subsection{Robustness}
 % is javascript/ionic robust?
+JavaScript is lacking in robustness, this is inherent to the language itself.
+Loose typing, implicit variable definitions and no real official guidelines or structure at all.
+JavaScript doesn't even have a standard library.
+\\
+
+While this causes issues (there is not much error checking or auto-completion), you can get around it with plenty of console logging and getting comfortable with the Google Chrome Developer Tools.
+Using transpiled languages like Microsoft's TypeScript gives more structure such as auto-completion and error checking.
+\\
+
+Google have done a good job at bringing structure to the JavaScript (and web development) world with the advent of Angular.
+\\
+
+We done much user testing in order to kink out any errors.
+Something that unit tests may not find.
 
 \subsection{Performance}
 % is it performant compared to Android and Swift?
+Ionic is as performant as we needed.
+Our application contains various buttons, forms mixed with CSS and Animations.
+There is not too much heavy duty calculation going on.
+\\
+
+Say if we were creating a game, or processing image data, then perhaps using Java(Android) or Swift would be something we'd have to look into.
+\\
+
+In regards to the structure of this project compared to Android and iOS, I think Angular does a good job at bringing structure to JavaScript.
+The application is very modular and understandable (check out the diagram above to see how simple it is).
 
 \subsection{Limitations}
 \subsubsection{Native SDK Support}
 % do we miss native sdk support?
+With project Cordova we get access to most of the hardware available on the device, this still doesn't mean that we get access to Apples Kits (Health, Game, etc), but it does give us access to things like the TouchID sensor.
+
+Some project may rely on the proprietary SDKs, but many project don't, and that's fine.
+
 \subsubsection{Too new?}
 % limitations of using such a new framework? breaks a lot?
+We faced many issues while developing in the web development world, every day we had to update various dependencies.
+If you haven't updated in a week, well you will be waiting a while before you start working.
+\\
+
+If a package decides to be removed from a repo, or a breaking change occurs on a package that one of your dependencies depends on.
+Well prepare to navigate the GitHub issue tracker looking for others who have the same issue.
+\\
+
+If you have a large update, like for XCode, iOS or Ionic, then there may be a ripple effect.
+\\
+
+\textbf{Example:}
+When I updated to iOS 8.2 on my iPhone, I tried to update my app through the Ionic command line tool, I get a strange error, so I run it with XCode, similar error, but I notice XCode needs to be updated as well. I go to update XCode, XCode states that there is an update for my Mac that needs to be installed.
+
+The Mac OSX update takes an hour, XCode update takes an hour. Then once all finished I have to update Ionic.
+Sometimes when updating XCode it removes the configuration file that you have set up previously, so you have to edit that.
+\\
+
+This is the kind of thing that happens with each major update and the first few times it is very confusing, but this is the world we live in, fast paced and never ending.
 
 \chapter{Conclusion}	% 1-3 pages
 % talk about the project as a whole
+We set out to create a food ordering system for the GMIT Catering Company.
+Goals were set, meetings scheduled and plans put in place.
+\\
 
 %what we learnt
+Throughout the project we constantly hit goals while being pulled back by new objectives.
+With meetings came more items on our task list.
+We worked through all of this and created a well designed product that the client wants.
+\\
 
 %what we would do differently
+\noindent In the future we would:
+\begin{itemize}[noitemsep,nolistsep]
+\item Use the GitHub issue tracker from the beginning.
+\item Try out various other GitHub features like Milestones.
+\item Perhaps look into using other web development frameworks like Jetty or MEAN stack (as opposed to a PHP based one).
+\item Try out a transpiler language like TypeScript, in order to code Ionic/Angular in a more structured, robust way.
+\item Write unit tests for every function in the mobile application in order to check for bugs with each commit.
+\item Use TravisCI (or another continuous integration testing framework) to automatically run unit tests with each commit to Github.
+\item Investigate NoSQL databases, as SQL is not very easy to change, which is an issue in an Agile project.
+\item Document the minutes of every single meeting (and email it to all parties involved).
+\end{itemize}
+    \hfill 
+    \\
 
 %what we gained
+We learned much in this project, more then in any other project before.
+Some of the major topics that resonate with us when thinking back over this project are: 
+\begin{itemize}[noitemsep,nolistsep]
+\item Teamwork
+\item Collaboration
+\item Rapid application development
+\item Prototyping
+\item Agile
+\end{itemize}
+    \hfill 
+    \\
+All of these things are life skills that will help us throughout our working lives.
+\\
+
+Being able to research, pick up and implement a new technology that we only just heard of is something that was done constantly throughout this project.
+Keeping up with trends, but choosing wisely with precise research is a huge skill we have developed.
+Being involved with different project communities on their Websites, GitHub repo, Slack, StackOverflow and other channels is second nature at this stage.
+\\
 
 %high level stuff
+This was a huge project, a real one for a real company.
+We have extensively detailed all aspects of our journey in this project report.
+\\
 
 %last line should be quotable
+We hit the goals, attended the meetings, stuck to our plans and adapted when needed.
+\\
 
 %maybe quote somebody
+We tried to keep our project as simple as possible,
+ from the architecture,  technologies and algorithms used, 
+ to the documentation, readme's and websites built.
+    \hfill 
+    \\
+
+\begin{quote}
+    % \blindtext
+    \itshape Simplicity is prerequisite for reliability.
+    \hfill 
+    \\
+    - Edsger W. Dijkstra \cite{ewd_simplicity}
+    % \par
+    % \begingroup
+    % \leftskip4em
+    % \rightskip\leftskip
+    % \blindtext
+    % \par
+    % \endgroup
+    % \blindtext
+\end{quote}
+
 
 \begin{comment}
 \begin{itemize}
