@@ -1433,7 +1433,6 @@ app.listen(app.get('port'), function() {
   \begin{figure}[H] 
   	\center{\includegraphics[width=1.0\linewidth]{img/issue_tracker}}
   	\caption{Issue Tracker}
-  	\label{fig:speciation}
   \end{figure}
   
   
@@ -1454,8 +1453,6 @@ We chose to use a RESTful architecture   ~\cite{JSON_REST_interface} with JSON  
 It's reliable and has been battle tested with time.
 \\
 Both setting up and querying a RESTful system is trivial.
-
-  %% TODO: Vlad: 
   
   \subsection{HTTP Requests}
   \begin{wrapfigure}{r}{2.5cm}
@@ -1483,15 +1480,15 @@ Both setting up and querying a RESTful system is trivial.
     
   % talk about the HTTP get/post requests used via the interface from the phone and server
   \subsection{Custom API}
-  We created a Custom HTTP RESTful API on our web application.
-  It contains various routes which are discussed in the web app section of the system design and illustrated via angular HTTP code snippets in the mobile app section of the system design below.
-  \\
-  
-  We found this to be very quick and easy to set up and would recommend it to others and we ourself would use it in the future without a doubt.
-  
-  % TODO: Ronan:
-  % Its a brief description, more advance stuff will be defined in System Design section. 
-  % The web server has a custom API that the mobile app uses
+We created a Custom HTTP RESTful API on our web application.
+It contains various routes which are discussed in the web app section of the system design and illustrated via angular HTTP code snippets in the mobile app section of the system design below.
+\\
+
+We found this to be very quick and easy to set up and would recommend it to others and we ourself would use it in the future without a doubt.
+\\
+
+The web server has a custom API that the mobile app uses
+We will go into it some more below in the System Design section. 
 
 \chapter{System Design}	% n-m pages
   \section{Database}
@@ -2020,33 +2017,51 @@ pdfMake.createPdf(docDefinition).download('optionalName.pdf');
 \pagebreak
   \section{Mobile App}
 Here we will go though all the different sections of the mobile application.
+\\
+
+There are three tabs in the application, Orders, About and Account.
+These are located on the bottom for iOS and on the top for Android.
+This gives a native experience, look and feel to the user.
+\\
+
+I will refer to each view as a page below.
 
 \subsection{Sections}
 A description of each part of the mobile application.
+\\
+
 % 1
 \begin{minipage}{5cm}
 	\begin{figure}[H]
 		\includegraphics[width=5cm]{img/mobile-app/screen-shots/IMG_2903.jpg}
-		\caption{Login}
+		\caption{Home Screen}
 	\end{figure}
 \end{minipage} \hfill
 \begin{minipage}{0.55\textwidth}
-	Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
-	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
-	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+We can see the application icon on the \textbf{home screen}.
+\\
+
+Initially we were going to try and incorporate the GMIT logo into the design but that seemed too tacky.
+\\
+
+We used the GMIT Catering green colour with a slight gradient, then overlaid a simple sandwich icon in white.
 \end{minipage}
 
 % 2
 \begin{minipage}{0.55\textwidth}
-	Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
-	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
-	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+The first screen you encounter after tapping on the application is the \textbf{splash screen}, which is just a larger version of the application icon.
+You usually only see this the first time you open the application or if you are running on an older device.
+\\
+
+Once loaded you will see the \textbf{login} page, where we ask for your ID and Password.
+This form contains validation and error messages above the input boxes.
+You may only tap the \textbf{Sign In} button once the form is valid.
+We have incorporated this into all forms in the application.
+\\
+
+Once logged in you will stay logged in, even after closing the application, you can log out from within the application.
+
+You also have access to the \textbf{Sign Up} and \textbf{Reset Password} pages.
 \end{minipage}
 \begin{minipage}{5cm}
 	\begin{figure}[H]
@@ -2060,31 +2075,36 @@ A description of each part of the mobile application.
 \begin{minipage}{5cm}
 	\begin{figure}[H]
 		\includegraphics[width=5cm]{img/mobile-app/screen-shots/IMG_2905.jpg}
-		\caption{Login}
+		\caption{Password Reset}
 	\end{figure}
 \end{minipage} \hfill
 \begin{minipage}{0.55\textwidth}
-		Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
-	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
-	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+If you forget your password you can enter your ID and Email into this form, and a new password will be emailed to you.
+\\
+
+You can then edit your password from within the application later on.
 \end{minipage}
 
 % 4
 \begin{minipage}{0.55\textwidth}
-	Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
-	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
-	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+The \textbf{Sign Up} page contains a few basic instructions above the form, then some error messages, and finally the form itself.
+\\
+
+There is extra form validation here, such as regular expressions to make sure that all characters are valid, for instance only alpha characters are allowed in the name fields, no spaces or apostrophes. 
+Once you sign up you will automatically be logged in.
+\\
+
+Password input on all forms are hashed with \textbf{MD5} instantly.
+We may input any characters as the password will be hashed into valid characters.
+It also means that there passwords are not stored in plain text, MD5 hashes cannot be un-hashed.
+\\
+
+We felt this was a necessary step for security and privacy purposes.
 \end{minipage}
 \begin{minipage}{5cm}
 	\begin{figure}[H]
 		\includegraphics[width=5cm]{img/mobile-app/screen-shots/IMG_2906.jpg}
-		\caption{Login}
+		\caption{Sign Up}
 	\end{figure}
 \end{minipage} \hfill
 
@@ -2092,31 +2112,36 @@ A description of each part of the mobile application.
 \begin{minipage}{5cm}
 	\begin{figure}[H]
 		\includegraphics[width=5cm]{img/mobile-app/screen-shots/IMG_2907.jpg}
-		\caption{Login}
+		\caption{Orders}
 	\end{figure}
 \end{minipage} \hfill
 \begin{minipage}{0.55\textwidth}
-	Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
-	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
-	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+From the \textbf{orders} page we can see all the sandwiches that are available.
+\\
+
+This data is taken from our web server and can be changed instantly.
+
 \end{minipage}
 
 % 6
 \begin{minipage}{0.55\textwidth}
-	Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
-	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
-	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+When we tap on a sandwich we our brought to the order page for that sandwich.
+\\
+
+We can view more information about the chosen sandwich from here.
+\\
+
+We must then choose a bread and order time.
+\\
+
+There are optional requirements such as: a drink, crisps, up to four miscellaneous items and a text comment.
+The miscellaneous items mostly include add ons for the sandwich such as re onion, lettuce and things of that nature.
+
 \end{minipage}
 \begin{minipage}{5cm}
 	\begin{figure}[H]
 		\includegraphics[width=5cm]{img/mobile-app/screen-shots/IMG_2908.jpg}
-		\caption{Login}
+		\caption{Order Details}
 	\end{figure}
 \end{minipage} \hfill
 
@@ -2124,31 +2149,30 @@ A description of each part of the mobile application.
 \begin{minipage}{5cm}
 	\begin{figure}[H]
 		\includegraphics[width=5cm]{img/mobile-app/screen-shots/IMG_2909.jpg}
-		\caption{Login}
+		\caption{Order Details}
 	\end{figure}
 \end{minipage} \hfill
 \begin{minipage}{0.55\textwidth}
-	Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
-	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
-	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+At the bottom of the \textbf{order details} page we can see our current balance, the total cost for our order and a button to order it.
+We can also see some details about order times.
+\\
+
+The \textbf{Order button} is only available during valid times and when we have sufficient balance.
 \end{minipage}
 
 % 8
 \begin{minipage}{0.55\textwidth}
-	Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
-	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
-	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+Once we press the \textbf{Order button} we are given a prompt showing us how much money we will have in our account after the order.
+\\
+
+This is important as the user may press the \textbf{Order button} by accident.
+It also gives the user some time to go back and choose extra items.
+
 \end{minipage}
 \begin{minipage}{5cm}
 	\begin{figure}[H]
 		\includegraphics[width=5cm]{img/mobile-app/screen-shots/IMG_2910.jpg}
-		\caption{Login}
+		\caption{Order Confirm}
 	\end{figure}
 \end{minipage} \hfill
 
@@ -2156,31 +2180,27 @@ A description of each part of the mobile application.
 \begin{minipage}{5cm}
 	\begin{figure}[H]
 		\includegraphics[width=5cm]{img/mobile-app/screen-shots/IMG_2911.jpg}
-		\caption{Login}
+		\caption{Times}
 	\end{figure}
 \end{minipage} \hfill
 \begin{minipage}{0.55\textwidth}
-	Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
-	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
-	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+On the \textbf{About} page we can see today's opening times and order collection times.
+\\
+
+We can only order between opening times and may only choose to collect sandwiches at the order collection times allocated.
 \end{minipage}
 
 % 10
 \begin{minipage}{0.55\textwidth}
-	Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
-	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
-	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+Further down in the \textbf{About} page we can view information on the \textbf{Food Zone}, \textbf{Expresso Bar} and \textbf{Cafe Foyer}. 
+\\
+
+These are the three \textbf{GMIT Catering Company} locations throughout the college.
 \end{minipage}
 \begin{minipage}{5cm}
 	\begin{figure}[H]
 		\includegraphics[width=5cm]{img/mobile-app/screen-shots/IMG_2912.jpg}
-		\caption{Login}
+		\caption{Espresso Bar}
 	\end{figure}
 \end{minipage} \hfill
 
@@ -2188,31 +2208,39 @@ A description of each part of the mobile application.
 \begin{minipage}{5cm}
 	\begin{figure}[H]
 		\includegraphics[width=5cm]{img/mobile-app/screen-shots/IMG_2913.jpg}
-		\caption{Login}
+		\caption{Contact Us}
 	\end{figure}
 \end{minipage} \hfill
 \begin{minipage}{0.55\textwidth}
-	Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
-	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
-	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+At the very bottom of the \textbf{About} page we can see the \textbf{Contact Us} card.
+\\
+
+Which gives the user a simple way to email the \textbf{GMIT Catering Company} or to interact with them on Facebook.
+\\
+
+This will allow the company to gain more Facebook followers also.
 \end{minipage}
 
 % 12
 \begin{minipage}{0.55\textwidth}
-	Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
+From the \textbf{Account} page we can see the users cash.
+\\
+We also have options to:
 	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
+		\item Top Up (QR Reader)
+		\item Log out
+		\item View our information
+		\item View our history
+		\item Change our  password
 	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+
+Grouping all these actions into the \textbf{Account} page keeps the UI clean and organised.
+
 \end{minipage}
 \begin{minipage}{5cm}
 	\begin{figure}[H]
 		\includegraphics[width=5cm]{img/mobile-app/screen-shots/IMG_2914.jpg}
-		\caption{Login}
+		\caption{Account}
 	\end{figure}
 \end{minipage} \hfill
 
@@ -2220,31 +2248,39 @@ A description of each part of the mobile application.
 \begin{minipage}{5cm}
 	\begin{figure}[H]
 		\includegraphics[width=5cm]{img/mobile-app/screen-shots/IMG_2915.jpg}
-		\caption{Login}
+		\caption{QR Reader}
 	\end{figure}
 \end{minipage} \hfill
 \begin{minipage}{0.55\textwidth}
-	Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
-	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
-	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+When you tap on \textbf{Top up} you are given the prompt to purchase a top-up card from the \textbf{GMIT Catering} checkout or else continue to scan your card.
+\\
+
+A QR reader opens up form within the application and you can scan your card.
+\\
+
+On completion you will be let known if the top-up went through successfully or not.
+\\
+
+You will then be brought to the User Information page where you can see your cash balance updated (or not).
 \end{minipage}
 
 % 14
 \begin{minipage}{0.55\textwidth}
-	Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
-	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
-	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+In the \textbf{User History} page you can view all past orders.
+\\
+
+You can also see if it was marked as collected.
+\\
+
+If the order was cancelled by the \textbf{GMIT Catering} staff it will also be marked as collected.
+Collected basically means is has been dealt with by the staff.
+\\
+
 \end{minipage}
 \begin{minipage}{5cm}
 	\begin{figure}[H]
 		\includegraphics[width=5cm]{img/mobile-app/screen-shots/IMG_2916.jpg}
-		\caption{Login}
+		\caption{Order History}
 	\end{figure}
 \end{minipage} \hfill
 
@@ -2252,43 +2288,382 @@ A description of each part of the mobile application.
 \begin{minipage}{5cm}
 	\begin{figure}[H]
 		\includegraphics[width=5cm]{img/mobile-app/screen-shots/IMG_2917.jpg}
-		\caption{Login}
+		\caption{User Information}
 	\end{figure}
 \end{minipage} \hfill
 \begin{minipage}{0.55\textwidth}
-	Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
+From the \textbf{User Information} page we can see the users:
 	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
+		\item Cash
+		\item ID
+		\item Name
+		\item Phone
 	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+This can easily be extended to show other information.
 \end{minipage}
 
 % 16
 \begin{minipage}{0.55\textwidth}
-	Lorem ipsum dolor sit amet, nam dolorem mediocrem eu. Sint recusabo id ius, eum ei cibo postea. Sit ut ubique impedit dolorem, exerci delenit dissentiunt ne his. Nam ne veri aliquip inimicus. Lorem aliquid voluptua et eos, ex nec stet persius ancillae.
-	\begin{itemize}
-		\item *Rectangle
-		\item *Color: blue
-	\end{itemize}
-	Cu dicunt sanctus duo, cu has fugit persius adipisci, posse vocent cum in. Id persius epicurei mel, affert intellegebat sea et. In vis novum graeci quaerendum. Vis at quidam option tincidunt. His ad adhuc graecis.
+From the \textbf{Change Password} page we can change our password.
+\\
+
+This is very useful for when we email the user a temporary password.
+\\
+
+As you can see we have full form validation here.
+
 \end{minipage}
 \begin{minipage}{5cm}
 	\begin{figure}[H]
 		\includegraphics[width=5cm]{img/mobile-app/screen-shots/IMG_2918.jpg}
-		\caption{Login}
+		\caption{Change Password}
 	\end{figure}
 \end{minipage} \hfill
     
 \subsection{Use Cases}
+There are many use cases for this application.
+\\
+
+First of all it create awareness of the GMIT Catering Company brand within the college.
+There is various information about the different areas within the college that the company runs.
+\\
+
+There are links to email and Facebook which lets the users interact with the company.
+\\
+
+Users can view opening times, which is often a reason why many students do not visit the canteen, due to not knowing it's open.
+\\
+
+With push notifications the company can get messages straight to the customer each day, giving various offers, deals and promotions.
+\\
+
+Users can pre-order food which is a very popular thing to do now a days, especially due to the fact that it can keep you structured and make sure you follow a certain eating habit, without the evils of hunger to persuade you into binging.
+\\
+
+On top of this, it allows customers to skip the queue and for the staff to prepare sandwiches during quite hours (but before rush hours).
 
 \subsection{Code Snippets}
+Here we will list some interesting code snippets from the mobile application.
+\\
 
-\subsection{UML Diagram}
+The Ionic/Angular markdown/code for the \textbf{Login} page.
 
-\subsection{HTTP RESTful Route Requests}
+This includes the form validation, which uses \textbf{ng-messages}.
+\begin{minted}[breaklines]{html}
+<ion-view view-title="gmit catering" hide-nav-bar="true" class="splash-page login-page">
+    <ion-content>
+        <div class="padding logo">
+            <h1>gmit catering</h1>
+        </div>
+    
+        <div>
+            <!-- errors -->
+            <ng-messages for="loginForm.$error" class="error-text">
+            <ng-message when="required">Required field missing</ng-message>
+            <ng-message when="minlength">Minimum Length not met</ng-message>
+            <ng-message when="maxlength">Maximum Length not met</ng-message>
+            </ng-messages>
+        </div>
+    
+        <form name="loginForm" class="form" ng-submit="userLogin(loginForm, loginForm.username, loginForm.password)" novalidate>
+            <div class="card">
+                <div class="list">
+                    <label class="item item-input">
+                        <span class="input-label">ID:</span>
+                        <input name="name" type="tel" ng-model="loginForm.username" placeholder="G/C Number" minlength="6" maxlength="8" required />
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">Password</span>
+                        <input name="pass" type="password" ng-model="loginForm.password" placeholder="********" minlength="3" maxlength="20" required />
+                    </label>
+                </div>
+            </div>
+            
+            <div class="padding-left padding-right">
+                <input type="submit" value="Sign in" class="button button-block button-balanced" ng-disabled="loginForm.$invalid" />
+            </div>
+        </form>
+    
+        <div class="padding splash-links splash-margin">
+            <a href="#/signup" class="a-no-style">Sign Up</a>
+        </div>
+        
+        <div class="padding splash-links splash-margin">
+            <a href="#/reset" class="a-no-style">Reset Password</a>
+        </div>
+    </ion-content>
+</ion-view>
+\end{minted}
+
+Next we can see the \textbf{userLogin} function that the above form calls on, here we are inside the \textbf{Login Controller}.
+
+If the form is valid then we pass the request onto the auth function in the User service, we also have some error messages.
+
+We are using the \textbf{.then} functionality of the Angular service function User.auth to allow us to wait until the request has finished, this is a basic form of a promise.
+\begin{minted}[breaklines]{js}
+$scope.userLogin = function(form, name, password) {
+    var username = parseInt(name, 10);
+    var success;
+    var login = 1;
+    
+    if (form.$valid) {
+        User.auth(username, password, login).then(function() {
+            if (User.session_id === 1) {
+                $scope.showSuccess("Login"); // alert
+                IServices.pushinit(); // push notify setup and save user
+            } else {
+                if (User.connectionError === true) {
+                    console.log('User.connectionError === true: failed');
+                } else {
+                    $scope.showError("Username or Password Incorrect");
+                }
+            }
+        }, function() {
+            console.log('userLogin: failed');
+        });
+    }
+};
+\end{minted}
+
+Below is the regular expression used for the name fields.
+
+Only alpha characters are allowed, this is used in conjunction with ng-pattern in the html form.
+\begin{minted}[breaklines]{js}
+$scope.regex_name = '^[a-zA-Z]+$';
+\end{minted}
+
+\pagebreak
+\subsection{Diagram}
+The Ionic mobile application contains many folders and files, some for styling, structure and others for running tasks, downloading templates and building binaries.
+\\
+
+\noindent Here is a list of the directories within the home directory:
+\begin{itemize}[noitemsep,nolistsep]
+\item hooks
+\item test
+\item node\_modules
+\item platforms
+\item plugins
+\item privacy-policy
+\item resources
+\item scss
+\item typings
+\item www
+\end{itemize}
+There are also around 20 files for various functions as described above.
+The actual development happens within the \textbf{www} folder (www because we are working within a web view).
+\\
+
+\noindent Here is an illustration of the contents within the \textbf{www} folder:
+% full page width
+\begin{center}
+    \makebox[\textwidth]{\includegraphics[width=\paperwidth]{img/mobile-app/diagram.png}}
+\end{center}
+
+\section{HTTP RESTful Route Requests}
 % go through all the HTTP routes, with code snippets
-% TODO: Ronan: code snippets of all HTTP Requests from Ionic app and how we saved them.
+A listing of all the routes, including request and response data.
+The request data is any data that we give (either in the URL via ':' or in the body of the HTTP request) to the server.
+The response data is data received from the server in response to our HTTP request (in JSON format or else error 404).
+\\
+
+First I will show you an example of how we do a HTTP request in Angular. Since the most common function we use is for authorising the user, we will show you that one:
+\begin{minted}[breaklines]{js}
+        o.auth = function(username, password, login) {
+            var passwordMd5 = md5.createHash(password);
+            
+            if (login) {
+                o.showLoading();
+            }
+            
+            var postTo = SERVER.url + "verifyuser/" + username + "/" + passwordMd5;
+            
+            return $http({
+                method: 'GET',
+                url: postTo
+            }).then(function successCallback(response) {
+            if (response.data.hasOwnProperty('customer_id')) {
+                o.setSession(username, passwordMd5, 1, response.data.customer_id, response.data.customer_name, response.data.customer_surname, response.data.customer_email, response.data.customer_mobile, response.data.customer_address, response.data.customer_cash);
+            }
+            
+            if (login) {
+                o.hideLoading();
+            }
+            o.connectionError = false;
+            
+        }, function errorCallback(response) {
+        if (login) {
+            o.hideLoading();
+        }
+        o.connectionError = true;
+    });
+};
+\end{minted}
+Here we can see we first hash the users password with MD5.
+Then we show the loading animation/spinner, next we create the URL and make the HTTP request.
+Once we have a response we save the data and hide the loading animation/spinner, or else show an error message.
+\\
+
+The rest of the HTTP requests follow a similar format.
+\linebreak
+
+\noindent We start the url with a prefix then add on the url function that we wish to use. \\
+
+\textbf{Prefix:}
+\begin{itemize}[noitemsep,nolistsep]
+\item \textbf{Production:} \url{http://canteenapplication.vmarisevs.me/mobileapplication/}
+\item \textbf{Development:} \url{https://catering-test-server.herokuapp.com/}
+\end{itemize}
+%code snippets?
+
+Below I will show the URL structure, along with an example request and response.
+
+\subsection*{Create User}
+\textbf{URL:}
+\begin{minted}[breaklines]{yaml}
+createuser[/:customerLogin][/:customerPW][/:customerEmail][/:customerMobile] [/:customerName][/:customerSurname][/:customerAddress]
+\end{minted}
+
+\textbf{Request:}
+\begin{minted}[breaklines]{yaml}
+createuser/123123/pw/email@email.com/0861231234/First/Sur/address
+\end{minted}
+
+\textbf{Response:}
+\begin{minted}[breaklines]{JSON}
+{"customer_identifier":"11E578C39D1DAE2881B43FAA99013818"}
+\end{minted}
+
+\subsection*{Login/Verify User}
+\textbf{URL:}
+\begin{minted}[breaklines]{yaml}
+verifyuser[/:customerLg][/:customerPW]
+\end{minted}
+
+\textbf{Request:}
+\begin{minted}[breaklines]{yaml}
+verifyuser/123123/pw
+\end{minted}
+
+\textbf{Response:}
+\begin{minted}[breaklines]{JSON}
+{"customer_id":"11E4E6370B663F0D81B9EC9A743CC2AE",
+"customer_name":"Regina"
+,"customer_surname":"Walsh",
+"customer_cash":"10.20",
+"customer_mobile":"0853243435"}
+\end{minted}
+
+\subsection*{Get Food}
+\textbf{URL:}
+\begin{minted}[breaklines]{yaml}
+getfood
+\end{minted}
+
+\textbf{Request:}
+\begin{minted}[breaklines]{yaml}
+getfood
+\end{minted}
+
+\textbf{Response:}
+\begin{minted}[breaklines]{JSON}
+[{"food_id":"23961698511618135",
+"food_name":"BLT", "food_description":"Grilled Bacon,\nSliced Tomato,\nCrisp Lettuce,\nMayonnaise\n","food_price":"3.95",
+"food_type":"ROLL","food_picture":"BLT.jpg"}, {"food_id":"23961698511618136",
+"food_name":"Baked Ham & Cheese", "food_description":"Baked Ham,\nMozzarella Cheese, \nCheddar Cheese,\nCountry Relish\n",
+"food_price":"3.95", "food_type":"ROLL","food_picture":"BakedHamnCheese.jpg"}]
+\end{minted}
+
+\subsection*{User History}
+\textbf{URL:}
+\begin{minted}[breaklines]{yaml}
+userhistory[/:customerID][/:customerPW]
+\end{minted}
+
+\textbf{Request:}
+\begin{minted}[breaklines]{yaml}
+userhistory/11E4E6370B663F0D81B9EC9A743CC2AE/pw
+\end{minted}
+
+\textbf{Response:}
+\begin{minted}[breaklines]{JSON}
+{"orders":{"11E55B538748A90AA04434E6D77FF0A4":{"order_collected":"0",
+"order_comments":"\"some comment\"", "order_collection_time":"12:00:00",
+"order_posted":"2015-09-15 02:42:50","food":[{"food_id":"23961698511618135",
+"food_name":"BLT", "food_description":"Grilled Bacon,\nSliced Tomato,\nCrisp Lettuce,\nMayonnaise\n",
+"food_price":"3.95","food_count":"1", "food_type":"ROLL","food_pic":"BLT.jpg"},{"food_id":"23961698511618141",
+"food_name":"500ml still water","food_description":"","food_price":"1.00", "food_count":"1","food_type":"DRINK","food_pic":"default.jpg"}]}}}
+\end{minted}
+
+\subsection*{Change User Password}
+\textbf{URL:}
+\begin{minted}[breaklines]{yaml}
+changeuserpw[/:customerID][/:customerPW][/:customerNewPW]
+\end{minted}
+
+\textbf{Request:}
+\begin{minted}[breaklines]{yaml}
+changeuserpw/11E55B29BCA900A6A04434E6D77FF0A4/pw/pww
+\end{minted}
+
+\textbf{Responses:}
+\begin{minted}[breaklines]{JSON}
+{"status":"OK"}
+
+404
+\end{minted}
+
+\subsection*{Working Time}
+\textbf{URL:}
+\begin{minted}[breaklines]{yaml}
+workingtime
+\end{minted}
+
+\textbf{Request:}
+\begin{minted}[breaklines]{yaml}
+workingtime
+\end{minted}
+
+\textbf{Response:}
+\begin{minted}[breaklines]{JSON}
+{"OrdersCollectionTime":["12:00:00","14:00:00"], "TodaysWorkingTime":{"open_time":null,"close_time":null}, "CurrentTime":"18:26:50"}
+\end{minted}
+
+\subsection*{Buy Food}
+\textbf{URL:}
+\begin{minted}[breaklines]{yaml}
+buyfood[/:customerID][/:customerPW][/:collectionTime]
+\end{minted}
+
+\textbf{Request:}
+\begin{minted}[breaklines]{yaml}
+http://canteenapplication.vmarisevs.me/mobileapplication/buyfood/ 11E576B38F799E9281B43FAA99013818/pw/12:00?order_list= {%221%22:%2224151838022434887%22}&customer_comments=%22Hello%20Vlad%22
+\end{minted}
+
+\textbf{Responses:}
+\begin{minted}[breaklines]{JSON}
+{"status":"OK"}
+
+404
+\end{minted}
+
+\subsection*{Recover User Password}
+\textbf{URL:}
+\begin{minted}[breaklines]{yaml}
+recoveruserpw[/:customerLg][/:customerEmail]
+\end{minted}
+
+\textbf{Request:}
+\begin{minted}[breaklines]{yaml}
+recoveruserpw/305490/vmarisevs@gmail.com
+\end{minted}
+
+\textbf{Responses:}
+\begin{minted}[breaklines]{JSON}
+{"status":"OK"}
+
+404
+\end{minted}
 
 \chapter{System Evaluation}	% n-m pages
 \section{Management Website}
