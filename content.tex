@@ -49,7 +49,7 @@ We'd also like to thank the GMIT Catering Company staff for the time spent meeti
 %% CONTEXT
 % basic idea
 We set out to create a food ordering system for the GMIT Catering Company (known henceforth as the company).
-The basic structure is a mobile application (henceforth known as mobile app) for the Android and iOS systems that the user interacts with, and a server (henceforth known as web app) that the staff can log into in order to view transactions, user details and to update the mobile app.
+The basic structure is a mobile application (henceforth known as mobile app) for the Android and iOS systems that the user interacts with, and a server (henceforth known as web app) that the staff can log into in order to view transactions, user details and to update the mobile app.\\
 
 % reason #1
 The reason such a system is needed is that queues during peak times tend to be enormous and currently it's hard to service all the customers.
@@ -192,7 +192,7 @@ I will speak more in detail about these technologies in the technology review ch
 \\
 
 Some of the features of the mobile application are:
-\begin{itemize}
+\begin{itemize}[noitemsep]
 \item Login
 \item Sign-up
 \item Password Reset
@@ -237,14 +237,14 @@ I created a controller in the mobile application, once the app starts it gets th
 
 The push server is always listening for incoming requests, once it receives one it evaluates it, adds a timestamp and saves the user object (JSON) to a CouchDB server (Using IBM's Cloudant Web Server).
 
-The push server is a MEAN Stack, Yeoman scafolded project that uses NodeJS as the environment, Express as the Web Framework and Angular as the MVC (Model View Controller) framework in order to build the web application.
+The push server uses the MEAN Stack, Yeoman scaffolds  the project which uses NodeJS as the environment, Express as the Web Framework and Angular as the MVC (Model View Controller) framework in order to build the web application.
 \linebreak
 
 The reasons we chose to have the push notification server separate is that:
 \begin{itemize}
 \item We did not realise we needed to save the device tokens initially and to implement this new table into the SQL schema is a big effort
 \item We wanted to try out a MEAN Stack application
-\item We felt there was no big dissadvantage on having the push server seperate
+\item We felt there was no big disadvantage on having the push server seperate
 \item The mobile app is so tightly integrated with the push server (everything is written in JavaScript), that it made creating the web application extremely simple
 \item The GMIT Catering company may assign the task of push notifications to somebody that they do not wish to have access to the food ordering system, such as a social media expert. 
 \end{itemize}
@@ -266,7 +266,7 @@ Users can:
 	\item There were plenty of meeting and planning with our supervisor and the companies manager.
 	\item We did user testing on the app, and constantly made sure all the routes were working.
 	\item We designed a RESTful style route interface. This let us work on our own components without the web and mobile app waiting for each other.
-	\item We used GitHub during the development process, tracking tasks via the Github Issue tracker.
+	\item We used GitHub during the development process, tracking tasks via the  Issue tracker.
 	\item We tested out various technologies at each step of the way and discussed why we were choosing each one.
 \end{itemize}
 \end{comment}
@@ -376,7 +376,7 @@ Bleeding edge technologies are all around, especially right now within the web d
 \\
 We chose some bleeding edge technologies that we felt would stand the test of time and make it into the \textit{cutting edge} stage.
 Here is a list of some of these technologies:
-\begin{itemize}
+\begin{itemize}[noitemsep]
 	\item AngularJS
 	\item Ionic Framework
 	\item NodeJs \& ExpressJS
@@ -503,7 +503,7 @@ In order to switch between the test and real server we only need to change one l
 This file is located in:
 \\
 www/app/app.js
-\begin{minted}[breaklines, mathescape, linenos, numbersep=5pt, frame=single, numbersep=5pt, xleftmargin=0pt]{css}
+\begin{minted}[breaklines, mathescape, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]{css}
 .constant('SERVER', {
   // test server
   // url: 'https://catering-test-server.herokuapp.com/',
@@ -513,7 +513,7 @@ www/app/app.js
 });
 \end{minted}
 \section{Source Control}
-%If team based, did you use GitHub during the development process.
+%If team based, did you use  during the development process.
 We made sure to use source control throughout our project, utilizing branches and constant commits.
 Between the mobile app and web app alone we have a total of \textbf{210} commits.
 
@@ -793,7 +793,7 @@ Two way binding is used so that as you enter information is can be seen straight
 	\label{fig:speciation}
 \end{figure}
 
-%\pagebreak
+\pagebreak
 \subsection{Ionic Framework}
 % talk about JS, AngularJS, CSS, HTML and Ionic.
 \begin{wrapfigure}{r}{2.5cm}
@@ -809,9 +809,7 @@ To Start an Ionic application you run these commands in bash:
 \begin{minted}[%
 breaklines,
 mathescape,
-linenos,
 numbersep=5pt,
-frame=single,
 numbersep=5pt,
 xleftmargin=0pt,
 ]{bash}
@@ -829,9 +827,7 @@ Here is a simple controller:
 \begin{minted}[%
 breaklines,
 mathescape,
-linenos,
 numbersep=5pt,
-frame=single,
 numbersep=5pt,
 xleftmargin=0pt,
 ]{js}
@@ -882,7 +878,7 @@ In order to use Heroku you:
 \end{itemize}
 
 \textbf{Here are the commands to create a new server and push to it} (once pushed it goes live instantly):
-\begin{minted}[breaklines, mathescape, linenos, numbersep=5pt, frame=single, numbersep=5pt, xleftmargin=0pt]{bash}
+\begin{minted}[breaklines, mathescape,, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]{bash}
 > heroku login
 > git init
 > heroku create
@@ -893,7 +889,7 @@ In order to use Heroku you:
 \end{minted}
 
 \textbf{Here is the Procfile} (this is the Heroku config file for the project, here we give the server the command to start our project):
-\begin{minted}[breaklines, mathescape, linenos, numbersep=5pt, frame=single, numbersep=5pt, xleftmargin=0pt]{yaml}
+\begin{minted}[breaklines, mathescape,, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]{yaml}
 web: node server.js
 \end{minted}
 
@@ -927,12 +923,13 @@ The iOS store makes more money then the Android store by a long shot.
 \end{wrapfigure} 
 Submitting an app to the Android \cite{android} (Google Play) store is a joy.
 First you go to the Google Play website, login with your Google account, give some extra details, pay €25 (per year) and you are instantly in.
-You then click on "create new app", fill out some details and it asks for the app binary file.
-\\
-In order to generate the Android binary file you must create a local android keystore (for signing ) compile the app with the Ionic tool, sign it, zipalign it and then submit it to the Google play store.
-You submit it by simply dragging it into the Google Play web site window. Within two hours the application will be live.
+You then click on "create new app", fill out some details and it asks for the app binary file.\\
 
-I looked into why it's so quick, and apparently they test your application after it is submitted, this leads to happy developers.
+In order to generate the Android binary file you must create a local android keystore (for signing ) compile the app with the Ionic tool, sign it, zipalign it and then submit it to the Google play store.
+You submit it by simply dragging it into the Google Play web site window. Within two hours the application will be live.\\
+
+I looked into why it's so quick, and apparently they test your application after it is submitted, this leads to happy developers.\\
+
 
 Here is the bash script I create to automate the Android build process:
 \begin{minted}[breaklines, mathescape, linenos, numbersep=5pt, frame=single, numbersep=5pt, xleftmargin=0pt]{bash}
@@ -1055,17 +1052,17 @@ Below are a few parts to the \textit{GruntFile.js} from the push web app.
 \textbf{Registering some tasks:}
 \begin{minted}{bash}
   grunt.registerTask('test', [
-  'clean:server',
-  'wiredep',
-  'concurrent:test',
-  'postcss',
+      'clean:server',
+      'wiredep',
+      'concurrent:test',
+      'postcss',
   ]);
   
   grunt.registerTask('default', [
-  'newer:jshint',
-  'newer:jscs',
-  'test',
-  'build'
+      'newer:jshint',
+      'newer:jscs',
+      'test',
+      'build'
   ]);
 \end{minted}
   
@@ -1115,26 +1112,26 @@ sass: ['./scss/**/*.scss']
 gulp.task('default', ['sass']);
 
 gulp.task('sass', function(done) {
-gulp.src('./scss/ionic.app.scss')
-.pipe(sass())
-.pipe(gulp.dest('./www/css/'))
-.pipe(minifyCss({
-keepSpecialComments: 0
-}))
-.pipe(rename({ extname: '.min.css' }))
-.pipe(gulp.dest('./www/css/'))
-.on('end', done);
+    gulp.src('./scss/ionic.app.scss')
+        .pipe(sass())
+        .pipe(gulp.dest('./www/css/'))
+        .pipe(minifyCss({
+        keepSpecialComments: 0
+    }))
+    .pipe(rename({ extname: '.min.css' }))
+    .pipe(gulp.dest('./www/css/'))
+    .on('end', done);
 });
 
 gulp.task('watch', function() {
-gulp.watch(paths.sass, ['sass']);
+    gulp.watch(paths.sass, ['sass']);
 });
 
 gulp.task('install', ['git-check'], function() {
-return bower.commands.install()
-.on('log', function(data) {
-gutil.log('bower', gutil.colors.cyan(data.id), data.message);
-});
+    return bower.commands.install()
+        .on('log', function(data) {
+            gutil.log('bower', gutil.colors.cyan(data.id), data.message);
+        });
 });
 
 // error stuff
@@ -1160,25 +1157,24 @@ It is a behaviour driven development framework for testing JavaScript code, and 
 'use strict';
 
 describe('Controller: HomeCtrl', function () {
-
-// load the controller's module
-beforeEach(module('gmitcat'));
-
-var HomeCtrl,
-scope;
-
-// Initialize the controller and a mock scope
-beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    HomeCtrl = $controller('HomeCtrl', {
-    $scope: scope
-    // place here mocked dependencies
-});
-}));
-
-it('should attach a list of awesomeThings to the scope', function () {
-    expect(HomeCtrl.awesomeThings.length).toBe(3);
-});
+    // load the controller's module
+    beforeEach(module('gmitcat'));
+    
+    var HomeCtrl,
+    scope;
+    
+    // Initialize the controller and a mock scope
+    beforeEach(inject(function ($controller, $rootScope) {
+        scope = $rootScope.$new();
+        HomeCtrl = $controller('HomeCtrl', {
+            $scope: scope
+            // place here mocked dependencies
+        });
+    }));
+    
+    it('should attach a list of awesomeThings to the scope', function () {
+        expect(HomeCtrl.awesomeThings.length).toBe(3);
+    });
 });
 \end{minted}
 
@@ -1199,30 +1195,29 @@ Once Karma is installed (via NPM) you just need to setup the config file and cho
 [breaklines, mathescape,, numbersep=5pt, numbersep=5pt, xleftmargin=0pt]
 {bash}
 module.exports = function(config) {
-config.set({
-
-// list of files / patterns to load in the browser
-files: [
-// bower:js
-'app/scripts/**/*.js', 'test/mock/**/*.js', 'test/spec/**/*.js'
-],
-port: 8080,
-
-// - Chrome, ChromeCanary, Firefox, Opera, Safari (only Mac), PhantomJS, IE (only Windows)
-browsers: [
-'PhantomJS'
-],
-
-plugins: [
-'karma-phantomjs-launcher', 'karma-jasmine'
-],
-singleRun: false,
-colors: true,
-
-// level of logging
-// possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-logLevel: config.LOG_INFO,
-});
+    config.set({
+        // list of files / patterns to load in the browser
+        files: [
+            // bower:js
+            'app/scripts/**/*.js', 'test/mock/**/*.js', 'test/spec/**/*.js'
+        ],
+        port: 8080,
+        
+        // - Chrome, ChromeCanary, Firefox, Opera, Safari (only Mac), PhantomJS, IE (only Windows)
+        browsers: [
+            'PhantomJS'
+        ],
+        
+        plugins: [
+            'karma-phantomjs-launcher', 'karma-jasmine'
+        ],
+        singleRun: false,
+        colors: true,
+        
+        // level of logging
+        // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
+        logLevel: config.LOG_INFO,
+    });
 };
 \end{minted}
 
@@ -1270,30 +1265,30 @@ It is similar to Bower.
 Below is the list of dependencies for the Ionic application:
 \begin{minted}{js}
 {
-"name": "gmitcatering",
-"version": "1.0.0",
-"description": "GmitCatering: Purchase food with ease",
-"dependencies": {
-"cordova": "^5.3.3",
-"gulp": "^3.5.6",
-"gulp-concat": "^2.2.0",
-"gulp-minify-css": "^0.3.0",
-"gulp-rename": "^1.2.0",
-"gulp-sass": "^2.0.4"
-},
-"devDependencies": {
-"bower": "^1.3.3",
-"gulp-util": "^2.2.14",
-"shelljs": "^0.3.0"
-},
-"cordovaPlugins": [
-"cordova-plugin-whitelist@1.0.0",
-"phonegap-plugin-push"
-],
-"cordovaPlatforms": [
-"android",
-"ios"
-]
+    "name": "gmitcatering",
+    "version": "1.0.0",
+    "description": "GmitCatering: Purchase food with ease",
+    "dependencies": {
+        "cordova": "^5.3.3",
+        "gulp": "^3.5.6",
+        "gulp-concat": "^2.2.0",
+        "gulp-minify-css": "^0.3.0",
+        "gulp-rename": "^1.2.0",
+        "gulp-sass": "^2.0.4"
+    },
+    "devDependencies": {
+        "bower": "^1.3.3",
+        "gulp-util": "^2.2.14",
+        "shelljs": "^0.3.0"
+    },
+    "cordovaPlugins": [
+        "cordova-plugin-whitelist@1.0.0",
+        "phonegap-plugin-push"
+    ],
+    "cordovaPlatforms": [
+        "android",
+        "ios"
+    ]
 }
 \end{minted}
 
@@ -1327,7 +1322,7 @@ Cordova allows us to access hardware on the device that would otherwise be very 
 \\
 
 They support:
-\begin{itemize}
+\begin{itemize}[noitemsep]
 \item iOS
 \item Android
 \item Windows Phone
@@ -1444,10 +1439,10 @@ app.listen(app.get('port'), function() {
   	\label{fig:speciation}
   \end{figure}
   
-  %\pagebreak
+  \pagebreak
   \section{JSON REST interface architecture}	% 1 pages
   \begin{wrapfigure}{r}{2.5cm}
-  	\includegraphics[width=3cm]{img/mobile-app/logos/express.png}
+  	\includegraphics[width=3cm]{img/mobile-app/logos/json.jpg}
   \end{wrapfigure} 
 We chose to use a RESTful architecture   ~\cite{JSON_REST_interface} with JSON   \cite{json} because it is very simple and easy to understand and use.
 It's reliable and has been battle tested with time.
@@ -1456,7 +1451,7 @@ Both setting up and querying a RESTful system is trivial.
   
   \subsection{HTTP Requests}
   \begin{wrapfigure}{r}{2.5cm}
-  	\includegraphics[width=3cm]{img/mobile-app/logos/express.png}
+  	\includegraphics[width=3cm]{img/mobile-app/logos/http.png}
   \end{wrapfigure} 
   \cite{http_methods}
   In order to query our RESTful system we used HTTP requests.
@@ -1491,6 +1486,13 @@ The web server has a custom API that the mobile app uses
 We will go into it some more below in the System Design section. 
 
 \chapter{System Design}	% n-m pages
+Here is a diagram of our system design/architecture:
+
+  \begin{figure}[H] 
+      \center{\includegraphics[width=1.0\linewidth]{img/ZF2/ionic_zf2_mysql_diagram.png}}
+      \caption{System Design}
+    \end{figure}
+
   \section{Database}
     \subsection{Purpose}
 
@@ -2666,6 +2668,10 @@ recoveruserpw/305490/vmarisevs@gmail.com
 \end{minted}
 
 \chapter{System Evaluation}	% n-m pages
+  \begin{figure}[H] 
+      \center{\includegraphics[width=1.0\linewidth]{img/system_design.jpg}}
+      \caption{System Architecture}
+    \end{figure}
 \section{Management Website}
 	\subsection{PDF make vs DOM PDF}
 		One of most commonly used modules for generating \textit{pdf} is DOM PDF for Zend Framework 2. This module let you generate file based on html type content. It has advantages such as easy to install using \textit{composer}, interprets html page as structure of pdf file, loading pictures from remote sources. But it also has a big disadvantage to generate large file it will require more PHP hosting memory. 
@@ -2752,7 +2758,7 @@ If you have a large update, like for XCode, iOS or Ionic, then there may be a ri
 \\
 
 \textbf{Example:}
-When I updated to iOS 8.2 on my iPhone, I tried to update my app through the Ionic command line tool, I get a strange error, so I run it with XCode, similar error, but I notice XCode needs to be updated as well. I go to update XCode, XCode states that there is an update for my Mac that needs to be installed.
+When I updated to iOS 8.2 on my iPhone, I tried to update my app through the Ionic command line tool, I get a strange error, so I run it with XCode, similar error, but I notice XCode needs to be updated as well. I go to update XCode, XCode states that there is an update for my Mac that needs to be installed.\\
 
 The Mac OSX update takes an hour, XCode update takes an hour. Then once all finished I have to update Ionic.
 Sometimes when updating XCode it removes the configuration file that you have set up previously, so you have to edit that.
@@ -2774,7 +2780,7 @@ We worked through all of this and created a well designed product that the clien
 
 %what we would do differently
 \noindent In the future we would:
-\begin{itemize}[noitemsep,nolistsep]
+\begin{itemize}[noitemsep]
 \item Use the GitHub issue tracker from the beginning.
 \item Try out various other GitHub features like Milestones.
 \item Perhaps look into using other web development frameworks like Jetty or MEAN stack (as opposed to a PHP based one).
@@ -2784,21 +2790,18 @@ We worked through all of this and created a well designed product that the clien
 \item Investigate NoSQL databases, as SQL is not very easy to change, which is an issue in an Agile project.
 \item Document the minutes of every single meeting (and email it to all parties involved).
 \end{itemize}
-    \hfill 
-    \\
 
+\pagebreak
 %what we gained
 We learned much in this project, more then in any other project before.
 Some of the major topics that resonate with us when thinking back over this project are: 
-\begin{itemize}[noitemsep,nolistsep]
+\begin{itemize}[noitemsep]
 \item Teamwork
 \item Collaboration
 \item Rapid application development
 \item Prototyping
 \item Agile
 \end{itemize}
-    \hfill 
-    \\
 All of these things are life skills that will help us throughout our working lives.
 \\
 
